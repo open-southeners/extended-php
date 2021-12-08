@@ -1,0 +1,15 @@
+{
+    "name": "skorelabs/laravel-package",
+    "description": "Description goes here",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rubén Robles",
+            "email": "d8vjork@outlook.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^6.0|^8.0"
+    }
+}
