@@ -3,8 +3,8 @@
 namespace D8vjork\LaravelHelpers\Tests;
 
 use D8vjork\LaravelHelpers\Tests\Fixtures\Models\Post;
+use D8vjork\LaravelHelpers\Tests\Fixtures\MyClass;
 use PHPUnit\Framework\TestCase;
-use D8vjork\LaravelHelpers\Tests\Fixtures\MyEnum;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +17,7 @@ class ClassesTest extends TestCase
 {
     public function test_class_namespace(): void
     {
-        $this->assertEquals(class_namespace(MyEnum::class), 'D8vjork\LaravelHelpers\Tests\Fixtures');
+        $this->assertEquals(class_namespace(MyClass::class), 'D8vjork\LaravelHelpers\Tests\Fixtures');
         $this->assertEquals(class_namespace(Model::class), 'Illuminate\Database\Eloquent');
         $this->assertEquals(class_namespace(new Post()), 'D8vjork\LaravelHelpers\Tests\Fixtures\Models');
     }
