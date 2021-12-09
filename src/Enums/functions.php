@@ -26,7 +26,7 @@ function is_enum($objectOrClass)
 /**
  * Check if enum class or object has a case.
  *
- * @param string|object $objectOrClass
+ * @param class-string<object>|object $objectOrClass
  * @param string $case
  * @return bool
  */

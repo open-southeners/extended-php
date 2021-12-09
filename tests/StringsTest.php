@@ -17,5 +17,6 @@ class StringsTest extends TestCase
     {
         $this->assertTrue(is_json('{}'));
         $this->assertTrue(is_json('[{}]'));
+        $this->assertTrue(is_json('{"foo": "bar"}'));
     }
 }
