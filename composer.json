@@ -1,6 +1,6 @@
 {
-    "name": "skorelabs/laravel-package",
-    "description": "Description goes here",
+    "name": "d8vjork/laravel-helpers",
+    "description": "Laravel extended helpers for PHP and framework features",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,31 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "illuminate/support": "^6.0|^8.0"
+        "php": "^7.4|^8.0|^8.1",
+        "beberlei/assert": "^3.3",
+        "laravel/helpers": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "D8vjork\\LaravelHelpers\\": "src",
+            "D8vjork\\LaravelHelpers\\Tests\\": "tests"
+        },
+        "files": [
+            "src/Classes/functions.php",
+            "src/Enums/functions.php",
+            "src/Models/functions.php",
+            "src/Strings/functions.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "require-dev": {
+        "laravel/database": "^8.53",
+        "phpstan/phpstan": "^1.2",
+        "phpunit/phpunit": "^9.5"
     }
 }
