@@ -45,22 +45,24 @@ function is_model($objectOrClass)
 /**
  * Get model instance from a mix-typed parameter.
  *
- * @param \Illuminate\Database\Eloquent\Model|string $model
+ * @param \Illuminate\Database\Eloquent\Model|string $key
  * @param string $class
  * @param array<string> $columns
  * @return mixed
  */
-function instance_from($model, string $class, array $columns = ['*'])
+function instance_from($key, string $class, array $columns = ['*'])
 {
-    if (! class_exists($model) || ! class_exists($class) || ! is_model($class)) {
-        throw new Exception("Model not found!");
+    if (! class_exists($key) || ! class_exists($class) || ! is_model($class)) {
+        $stringifiedKey = is_object($key) ? class_basename($key) : $key;
+
+        throw new Exception("Model instance of '${class}' with key '${stringifiedKey}' not found!");
     }
 
-    if (is_model($model)) {
-        return $model;
+    if (is_model($key)) {
+        return $key;
     }
 
-    return optional(model_from($class, false))->find($model, $columns);
+    return optional(model_from($class, false))->find($key, $columns);
 }
 
 /**
