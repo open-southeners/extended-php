@@ -10,7 +10,6 @@
     ],
     "require": {
         "php": "^7.4|^8.0|^8.1",
-        "beberlei/assert": "^3.3",
         "laravel/helpers": "^1.4"
     },
     "autoload": {

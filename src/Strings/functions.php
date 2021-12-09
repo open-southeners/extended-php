@@ -2,9 +2,6 @@
 
 namespace D8vjork\LaravelHelpers\Strings;
 
-use Assert\Assertion;
-use Exception;
-
 if (! function_exists('is_json')) {
     /**
      * Check if string is a valid JSON structure.
