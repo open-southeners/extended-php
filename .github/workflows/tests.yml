@@ -33,7 +33,7 @@ jobs:
       - name: Execute tests
         run: |
           cp phpunit-coverage.dist.xml phpunit.xml
-          vendor/bin/phpunit $( (( ${{ matrix.php }} != 8.1 )) && printf %s '--exclude-group needsPhp81' )
+          vendor/bin/phpunit $( [[ '${{ matrix.php }}' != '8.1' ]] && printf %s '--exclude-group needsPhp81' )
 
       - name: Deploy coverage to codacy
         uses: codacy/codacy-coverage-reporter-action@v1
