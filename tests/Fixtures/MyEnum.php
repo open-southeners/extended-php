@@ -1,6 +1,6 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Tests\Fixtures;
+namespace OpenSoutheners\LaravelHelpers\Tests\Fixtures;
 
 enum MyEnum
 {

@@ -1,15 +1,20 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Tests;
+namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use D8vjork\LaravelHelpers\Tests\Fixtures\Models\Post;
-use D8vjork\LaravelHelpers\Tests\Fixtures\Models\User;
-use D8vjork\LaravelHelpers\Tests\Fixtures\MyClass;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\User;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
+use Exception;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\UuidModel;
 
-use function D8vjork\LaravelHelpers\Models\is_model;
+use function OpenSoutheners\LaravelHelpers\Models\instance_from;
+use function OpenSoutheners\LaravelHelpers\Models\is_model;
+use function OpenSoutheners\LaravelHelpers\Models\key_from;
 
 class ModelsTest extends TestCase
 {
@@ -20,5 +25,46 @@ class ModelsTest extends TestCase
         $this->assertFalse(is_model(Model::class));
         $this->assertTrue(is_model(Post::class));
         $this->assertTrue(is_model(User::class));
+    }
+    
+    public function test_instance_from(): void
+    {
+        $myClass = new MyClass();
+        
+        $this->expectException(Exception::class);
+        instance_from($myClass, Post::class);
+        
+        $myClass = Model::class;
+
+        $this->expectException(ModelNotFoundException::class);
+        instance_from(Model::class, Post::class);
+
+        $this->assertTrue(instance_from('1', Post::class) instanceof Post);
+        $this->assertTrue(instance_from(2, User::class) instanceof User);
+    }
+
+    public function test_key_from()
+    {
+        $model = new Post(['id' => 1]);
+
+        $modelKey = key_from($model);
+        $this->assertIsNumeric($modelKey);
+        $this->assertEquals(1, $modelKey);
+        
+        $model = new UuidModel(['uuid' => '7c3a3e74-b602-4e0a-8003-bd7faeefde3d']);
+        
+        $modelKey = key_from($model);
+        $this->assertIsNotNumeric($modelKey);
+        $this->assertIsString($modelKey);
+        $this->assertEquals('7c3a3e74-b602-4e0a-8003-bd7faeefde3d', $modelKey);
+        
+        $modelKey = key_from($model->uuid);
+        $this->assertIsNotNumeric($modelKey);
+        $this->assertIsString($modelKey);
+        $this->assertEquals('7c3a3e74-b602-4e0a-8003-bd7faeefde3d', $modelKey);
+        
+        $myClass = new MyClass();
+        $modelKey = key_from($myClass);
+        $this->assertNull($modelKey);
     }
 }

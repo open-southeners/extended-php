@@ -1,17 +1,17 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Models;
+namespace OpenSoutheners\LaravelHelpers\Models;
 
-use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use ReflectionClass;
 
 /**
  * Get model from class or string (by name).
  *
- * @param string $value
+ * @param string|null $value
  * @param bool $asClass
  * @param string $namespace
- * @return \Illuminate\Database\Eloquent\Model|object|class-string|null
+ * @return \Illuminate\Database\Eloquent\Model|null
  */
 function model_from(string $value, bool $asClass = true, string $namespace = 'App\Models\\')
 {
@@ -31,12 +31,12 @@ function model_from(string $value, bool $asClass = true, string $namespace = 'Ap
 /**
  * Check if object or class string is a valid Laravel model.
  *
- * @param class-string<object>|object $objectOrClass
+ * @param class-string<object>|object $class
  * @return bool
  */
-function is_model($objectOrClass)
+function is_model($class)
 {
-    $classReflection = new ReflectionClass($objectOrClass);
+    $classReflection = new ReflectionClass($class);
 
     return $classReflection->isInstantiable()
         && $classReflection->isSubclassOf('Illuminate\Database\Eloquent\Model');
@@ -45,37 +45,52 @@ function is_model($objectOrClass)
 /**
  * Get model instance from a mix-typed parameter.
  *
- * @param \Illuminate\Database\Eloquent\Model|string $key
- * @param string $class
+ * @template T of \Illuminate\Database\Eloquent\Model
+ * @param \Illuminate\Database\Eloquent\Model|int|null $key
+ * @param class-string|string $class
  * @param array<string> $columns
- * @return mixed
+ * @return T
  */
 function instance_from($key, string $class, array $columns = ['*'])
 {
-    if (! class_exists($key) || ! class_exists($class) || ! is_model($class)) {
-        $stringifiedKey = is_object($key) ? class_basename($key) : $key;
-
-        throw new Exception("Model instance of '${class}' with key '${stringifiedKey}' not found!");
+    if (! class_exists($class) || ! is_model($class)) {
+        throw (new ModelNotFoundException)->setModel($class);
     }
-
+    
     if (is_model($key)) {
         return $key;
     }
+    
+    $model = model_from($class, false);
+    
+    if (!$model) {
+        $stringifiedKey = is_object($key) ? class_basename($key) : $key;
 
-    return optional(model_from($class, false))->find($key, $columns);
+        throw (new ModelNotFoundException)->setModel($class, $stringifiedKey);
+    }
+
+    return (new $model)->findOrFail($key, $columns);
 }
 
 /**
  * Get key (id) from a mix-typed parameter.
  *
- * @param \Illuminate\Database\Eloquent\Model|int $model
+ * @param \Illuminate\Database\Eloquent\Model|string|int $model
  * @return mixed
  */
 function key_from($model)
 {
-    if (is_object($model)) {
-        return optional($model)->getKey() ?: $model;
+    if (is_numeric($model)) {
+        return (int) $model;
     }
 
-    return $model;
+    if (is_object($model) && method_exists($model, 'getKey')) {
+        return $model->getKey();
+    }
+    
+    if (is_string($model)) {
+        return $model;
+    }
+
+    return null;
 }

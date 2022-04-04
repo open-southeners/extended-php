@@ -4,12 +4,12 @@ Laravel extended helpers for PHP and framework features
 
 ## Status
 
-[![latest tag](https://img.shields.io/github/v/tag/d8vjork/laravel_helpers?label=latest&sort=semver)](https://github.com/d8vjork/laravel_helpers/releases/latest) [![packagist version](https://img.shields.io/packagist/v/skore-labs/laravel-status)](https://packagist.org/packages/d8vjork/laravel-helpers) [![StyleCI](https://github.styleci.io/repos/226506454/shield?style=flat&branch=master)](https://github.styleci.io/repos/226506454) [![Scc Count Badge](https://sloc.xyz/github/d8vjork/laravel_helpers?category=code)](https://github.com/d8vjork/laravel_helpers) [![Scc Count Badge](https://sloc.xyz/github/d8vjork/laravel_helpers?category=comments)](https://github.com/d8vjork/laravel_helpers) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9eb60ed572b4baab58ac3c4c9c06e7f)](https://www.codacy.com/manual/d8vjork/laravel-status?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=d8vjork/laravel_helpers&amp;utm_campaign=Badge_Grade)
+[![latest tag](https://img.shields.io/github/v/tag/open-southeners/laravel_helpers?label=latest&sort=semver)](https://github.com/open-southeners/laravel_helpers/releases/latest) [![packagist version](https://img.shields.io/packagist/v/skore-labs/laravel-status)](https://packagist.org/packages/open-southeners/laravel-helpers) [![StyleCI](https://github.styleci.io/repos/226506454/shield?style=flat&branch=master)](https://github.styleci.io/repos/226506454) [![Scc Count Badge](https://sloc.xyz/github/open-southeners/laravel_helpers?category=code)](https://github.com/open-southeners/laravel_helpers) [![Scc Count Badge](https://sloc.xyz/github/open-southeners/laravel_helpers?category=comments)](https://github.com/open-southeners/laravel_helpers) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9eb60ed572b4baab58ac3c4c9c06e7f)](https://www.codacy.com/manual/open-southeners/laravel-status?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=open-southeners/laravel_helpers&amp;utm_campaign=Badge_Grade)
 
 ## Getting started
 
 ```sh
-composer require d8vjork/laravel-helpers
+composer require open-southeners/laravel-helpers
 ```
 
 ## Support
@@ -21,5 +21,5 @@ Read more: https://www.php.net/supported-versions.php
 ## Credits
 
 - Ruben Robles ([@d8vjork](https://github.com/d8vjork))
-- Skore ([https://www.getskore.com/](https://www.getskore.com/))
-- [And all the contributors](https://github.com/d8vjork/laravel_helpers/graphs/contributors)
+- Open Southeners ([https://opensoutheners.com/](https://opensoutheners.com/))
+- [And all the contributors](https://github.com/open-southeners/laravel_helpers/graphs/contributors)

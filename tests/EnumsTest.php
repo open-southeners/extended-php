@@ -1,15 +1,15 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Tests;
+namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use D8vjork\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
 use PHPUnit\Framework\TestCase;
-use D8vjork\LaravelHelpers\Tests\Fixtures\MyEnum;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 
-use function D8vjork\LaravelHelpers\has_case;
-use function D8vjork\LaravelHelpers\is_enum;
+use function OpenSoutheners\LaravelHelpers\has_case;
+use function OpenSoutheners\LaravelHelpers\is_enum;
 
 /**
  * @group needsPhp81

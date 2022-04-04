@@ -1,25 +1,25 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Tests;
+namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use D8vjork\LaravelHelpers\Tests\Fixtures\Models\Post;
-use D8vjork\LaravelHelpers\Tests\Fixtures\MyClass;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 
-use function D8vjork\LaravelHelpers\Classes\class_implement;
-use function D8vjork\LaravelHelpers\Classes\class_namespace;
-use function D8vjork\LaravelHelpers\Classes\class_use;
+use function OpenSoutheners\LaravelHelpers\Classes\class_implement;
+use function OpenSoutheners\LaravelHelpers\Classes\class_namespace;
+use function OpenSoutheners\LaravelHelpers\Classes\class_use;
 
 class ClassesTest extends TestCase
 {
     public function test_class_namespace(): void
     {
-        $this->assertEquals(class_namespace(MyClass::class), 'D8vjork\LaravelHelpers\Tests\Fixtures');
+        $this->assertEquals(class_namespace(MyClass::class), 'OpenSoutheners\LaravelHelpers\Tests\Fixtures');
         $this->assertEquals(class_namespace(Model::class), 'Illuminate\Database\Eloquent');
-        $this->assertEquals(class_namespace(new Post()), 'D8vjork\LaravelHelpers\Tests\Fixtures\Models');
+        $this->assertEquals(class_namespace(new Post()), 'OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models');
     }
 
     public function test_class_implement(): void

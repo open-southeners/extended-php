@@ -1,6 +1,6 @@
 <?php
 
-namespace D8vjork\LaravelHelpers;
+namespace OpenSoutheners\LaravelHelpers;
 
 use Exception;
 use ReflectionClass;

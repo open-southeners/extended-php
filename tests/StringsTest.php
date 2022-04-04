@@ -1,15 +1,15 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Tests;
+namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use D8vjork\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
 use PHPUnit\Framework\TestCase;
-use D8vjork\LaravelHelpers\Tests\Fixtures\MyEnum;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 
-use function D8vjork\LaravelHelpers\Strings\is_json;
+use function OpenSoutheners\LaravelHelpers\Strings\is_json;
 
 class StringsTest extends TestCase
 {

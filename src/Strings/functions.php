@@ -1,6 +1,6 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Strings;
+namespace OpenSoutheners\LaravelHelpers\Strings;
 
 if (! function_exists('is_json')) {
     /**

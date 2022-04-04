@@ -1,6 +1,6 @@
 <?php
 
-namespace D8vjork\LaravelHelpers\Classes;
+namespace OpenSoutheners\LaravelHelpers\Classes;
 
 if (! function_exists('class_namespace')) {
     /**
