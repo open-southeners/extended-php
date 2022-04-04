@@ -15,9 +15,17 @@ use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\UuidModel;
 use function OpenSoutheners\LaravelHelpers\Models\instance_from;
 use function OpenSoutheners\LaravelHelpers\Models\is_model;
 use function OpenSoutheners\LaravelHelpers\Models\key_from;
+use function OpenSoutheners\LaravelHelpers\Models\model_from;
 
 class ModelsTest extends TestCase
 {
+    public function test_model_from(): void
+    {
+        $this->assertIsString(model_from('Post', true, 'OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\\'));
+        $this->assertIsString(model_from('post', true, 'OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\\'));
+        $this->assertTrue(model_from('post', false, 'OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\\') instanceof Post);
+    }
+
     public function test_is_model(): void
     {
         $this->assertFalse(is_model(MyClass::class));

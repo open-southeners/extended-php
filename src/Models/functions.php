@@ -15,9 +15,7 @@ use ReflectionClass;
  */
 function model_from(string $value, bool $asClass = true, string $namespace = 'App\Models\\')
 {
-    $modelClass = $namespace.(starts_with($value, $namespace)
-        ? $value
-        : studly_case(class_basename($value)));
+    $modelClass = $namespace.studly_case(class_basename($value));
 
     $modelClass = class_exists($modelClass) ? $modelClass : null;
 
