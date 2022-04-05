@@ -36,6 +36,7 @@ jobs:
           vendor/bin/phpunit $( [[ '${{ matrix.php }}' != '8.1' ]] && printf %s '--exclude-group needsPhp81' )
 
       - name: Deploy coverage to codacy
+        if: matrix.php == '8.1'
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           # project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
