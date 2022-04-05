@@ -2,6 +2,7 @@
 
 namespace OpenSoutheners\LaravelHelpers\Classes;
 
+use Exception;
 use ReflectionClass;
 
 /**
@@ -45,7 +46,7 @@ function class_use($class, string $trait, bool $recursive = false)
 }
 
 /**
- * Call method from class string or object.
+ * Call public method from class string or object.
  * 
  * @template T
  * @param class-string<T>|T|object $class 
@@ -60,6 +61,19 @@ function call($class, string $method, array $args = [], bool $static = false)
 
     $classMethod = $reflector->getMethod($method);
 
+    $classMethod->setAccessible(true);
+
+    if (! $classMethod->isPublic()) {
+        throw new Exception("Method '${method}' is not public or accessible on class '{$reflector->getShortName()}'");
+    }
+    
+    if ($classMethod->isStatic() !== $static) {
+        $accessType = $static ? 'static' : 'non-static';
+        $methodType = $classMethod->isStatic() ? 'static' : 'non-static';
+
+        throw new Exception(sprintf("Accessing as %s a %s method '%s' on class '%s'", $accessType, $methodType, $method, $class));
+    }
+
     return $classMethod->invoke($static ? null : new $class, ...$args);
 }
 
@@ -70,7 +84,6 @@ function call($class, string $method, array $args = [], bool $static = false)
  * @param class-string<T>|T|object $class 
  * @param string $method
  * @param array $args 
- * @param bool $static
  * @return mixed
  */
 function call_static($class, string $method, array $args = [])

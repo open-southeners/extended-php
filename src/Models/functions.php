@@ -5,13 +5,15 @@ namespace OpenSoutheners\LaravelHelpers\Models;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use ReflectionClass;
 
+use function OpenSoutheners\LaravelHelpers\Classes\call;
+
 /**
  * Get model from class or string (by name).
  *
- * @param string|null $value
+ * @param string $value
  * @param bool $asClass
  * @param string $namespace
- * @return \Illuminate\Database\Eloquent\Model|null
+ * @return \Illuminate\Database\Eloquent\Model|class-string<\Illuminate\Database\Eloquent\Model>|null
  */
 function model_from(string $value, bool $asClass = true, string $namespace = 'App\Models\\')
 {
@@ -44,8 +46,8 @@ function is_model($class)
  * Get model instance from a mix-typed parameter.
  *
  * @template T of \Illuminate\Database\Eloquent\Model
- * @param \Illuminate\Database\Eloquent\Model|int|null $key
- * @param class-string|string $class
+ * @param T|int|null $key
+ * @param class-string<T>|string $class
  * @param array<string> $columns
  * @return T
  */
@@ -56,6 +58,7 @@ function instance_from($key, string $class, array $columns = ['*'])
     }
     
     if (is_model($key)) {
+        /** @var T */
         return $key;
     }
     
@@ -67,7 +70,7 @@ function instance_from($key, string $class, array $columns = ['*'])
         throw (new ModelNotFoundException)->setModel($class, $stringifiedKey);
     }
 
-    return (new $model)->findOrFail($key, $columns);
+    return call($model, 'findOrFail', compact('key', 'columns'));
 }
 
 /**

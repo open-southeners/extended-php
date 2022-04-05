@@ -2,21 +2,22 @@
 
 namespace OpenSoutheners\LaravelHelpers;
 
-use Exception;
 use ReflectionClass;
 use ReflectionEnum;
+use ReflectionException;
 
 /**
  * Check if class or object is a valid PHP enum.
  *
- * @param class-string<object>|object $objectOrClass
+ * @param class-string|object $objectOrClass
  * @return bool
  */
 function is_enum($objectOrClass)
 {
     try {
         $classReflection = new ReflectionClass($objectOrClass);
-    } catch (Exception $e) {
+    /** @phpstan-ignore-next-line */
+    } catch (ReflectionException $e) {
         return false;
     }
 

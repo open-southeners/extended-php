@@ -23,4 +23,14 @@ class MyClass
     {
         return compact('foo', 'bar');
     }
+
+    protected function hidden()
+    {
+        return true;
+    }
+
+    protected static function staticHidden()
+    {
+        return true;
+    }
 }

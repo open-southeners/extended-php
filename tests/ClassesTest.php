@@ -2,6 +2,7 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
+use Exception;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
 use PHPUnit\Framework\TestCase;
@@ -61,6 +62,18 @@ class ClassesTest extends TestCase
         $this->assertTrue(call_static(new MyClass(), 'staticMethod'));
         $this->assertEquals(call_static(MyClass::class, 'staticMethodWithArgs', $args), $args);
         $this->assertEquals(call_static(new MyClass(), 'staticMethodWithArgs', $args), $args);
+
+        $this->expectException(Exception::class);
+        call(MyClass::class, 'hidden');
+
+        $this->expectException(Exception::class);
+        call_static(MyClass::class, 'staticHidden');
+
+        $this->expectException(Exception::class);
+        call_static(MyClass::class, 'method');
+        
+        $this->expectException(Exception::class);
+        call(MyClass::class, 'staticMethod');
 
         $this->expectException(ReflectionException::class);
         call(MyClass::class, 'method', $args);
