@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
+use ReflectionException;
 
 use function OpenSoutheners\LaravelHelpers\Classes\call;
 use function OpenSoutheners\LaravelHelpers\Classes\call_static;
@@ -60,5 +61,17 @@ class ClassesTest extends TestCase
         $this->assertTrue(call_static(new MyClass(), 'staticMethod'));
         $this->assertEquals(call_static(MyClass::class, 'staticMethodWithArgs', $args), $args);
         $this->assertEquals(call_static(new MyClass(), 'staticMethodWithArgs', $args), $args);
+
+        $this->expectException(ReflectionException::class);
+        call(MyClass::class, 'method', $args);
+
+        $this->expectException(ReflectionException::class);
+        call_static(MyClass::class, 'staticMethod', $args);
+
+        $this->expectException(ReflectionException::class);
+        call(MyClass::class, 'methodDoesNotExists');
+
+        $this->expectException(ReflectionException::class);
+        call_static(MyClass::class, 'staticMethodDoesNotExists');
     }
 }
