@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2022-04-06
+
+### Added
+
+- Way to nest methods in `call` helper
+
+### Fixed
+
+- Minor fixes to model and class functions
+
 ## [0.3.0] - 2022-04-05
 
 ### Added
