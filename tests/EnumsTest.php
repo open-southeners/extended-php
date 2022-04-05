@@ -2,15 +2,14 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
-use PHPUnit\Framework\TestCase;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
-use stdClass;
-
+use Illuminate\Database\Eloquent\Model;
 use function OpenSoutheners\LaravelHelpers\has_case;
 use function OpenSoutheners\LaravelHelpers\is_enum;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @group needsPhp81
@@ -23,10 +22,10 @@ class EnumsTest extends TestCase
         $this->assertFalse(is_enum(Post::class));
         $this->assertFalse(is_enum(Model::class));
         $this->assertFalse(is_enum(HasAttributes::class));
-        $this->assertFalse(is_enum(new stdClass));
+        $this->assertFalse(is_enum(new stdClass()));
         $this->assertFalse(is_enum(''));
     }
-    
+
     public function test_has_case(): void
     {
         $this->assertTrue(has_case(MyEnum::class, 'First'));

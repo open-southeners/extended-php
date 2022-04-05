@@ -9,6 +9,7 @@ use ReflectionClass;
  * Get namespace from class string or object.
  *
  * @param object|string $class
+ *
  * @return string
  */
 function class_namespace($class)
@@ -24,7 +25,8 @@ function class_namespace($class)
  * Check if class instance or string uses an specific interface.
  *
  * @param object|string $class
- * @param string $interface
+ * @param string        $interface
+ *
  * @return bool
  */
 function class_implement($class, string $interface)
@@ -36,8 +38,9 @@ function class_implement($class, string $interface)
  * Check if class instance or string uses an specific trait.
  *
  * @param object|string $class
- * @param string $trait
- * @param bool $recursive
+ * @param string        $trait
+ * @param bool          $recursive
+ *
  * @return bool
  */
 function class_use($class, string $trait, bool $recursive = false)
@@ -47,12 +50,14 @@ function class_use($class, string $trait, bool $recursive = false)
 
 /**
  * Call public method from class string or object.
- * 
+ *
  * @template T
- * @param class-string<T>|T|object $class 
- * @param string $method
- * @param array $args 
- * @param bool $static
+ *
+ * @param class-string<T>|T|object $class
+ * @param string                   $method
+ * @param array                    $args
+ * @param bool                     $static
+ *
  * @return T|mixed
  */
 function call($class, string $method, array $args = [], bool $static = false)
@@ -63,10 +68,10 @@ function call($class, string $method, array $args = [], bool $static = false)
 
     $classMethod->setAccessible(true);
 
-    if (! $classMethod->isPublic()) {
+    if (!$classMethod->isPublic()) {
         throw new Exception("Method '${method}' is not public or accessible on class '{$reflector->getShortName()}'");
     }
-    
+
     if ($classMethod->isStatic() !== $static) {
         $accessType = $static ? 'static' : 'non-static';
         $methodType = $classMethod->isStatic() ? 'static' : 'non-static';
@@ -74,16 +79,18 @@ function call($class, string $method, array $args = [], bool $static = false)
         throw new Exception(sprintf("Accessing as %s a %s method '%s' on class '%s'", $accessType, $methodType, $method, $class));
     }
 
-    return $classMethod->invoke($static ? null : new $class, ...$args);
+    return $classMethod->invoke($static ? null : new $class(), ...$args);
 }
 
 /**
  * Call static method from class string or object.
- * 
+ *
  * @template T
- * @param class-string<T>|T|object $class 
- * @param string $method
- * @param array $args 
+ *
+ * @param class-string<T>|T|object $class
+ * @param string                   $method
+ * @param array                    $args
+ *
  * @return mixed
  */
 function call_static($class, string $method, array $args = [])

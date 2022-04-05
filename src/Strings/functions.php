@@ -6,6 +6,7 @@ namespace OpenSoutheners\LaravelHelpers\Strings;
  * Check if string is a valid JSON structure.
  *
  * @param string $string
+ *
  * @return bool
  */
 function is_json(string $string)

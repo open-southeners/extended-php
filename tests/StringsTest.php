@@ -2,14 +2,8 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
-use PHPUnit\Framework\TestCase;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Eloquent\Concerns\HasAttributes;
-use Illuminate\Database\Eloquent\Model;
-
 use function OpenSoutheners\LaravelHelpers\Strings\is_json;
+use PHPUnit\Framework\TestCase;
 
 class StringsTest extends TestCase
 {
@@ -18,7 +12,7 @@ class StringsTest extends TestCase
         $this->assertTrue(is_json('{}'));
         $this->assertTrue(is_json('[{}]'));
         $this->assertTrue(is_json('{"foo": "bar"}'));
-        $this->assertTrue(is_json("{\"foo\": \"bar\"}"));
+        $this->assertTrue(is_json('{"foo": "bar"}'));
         $this->assertFalse(is_json("{\u0022foo\u0022: \u0022bar\u0022}"));
     }
 }

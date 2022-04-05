@@ -3,19 +3,18 @@
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
 use Exception;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
-use ReflectionException;
-
 use function OpenSoutheners\LaravelHelpers\Classes\call;
 use function OpenSoutheners\LaravelHelpers\Classes\call_static;
 use function OpenSoutheners\LaravelHelpers\Classes\class_implement;
 use function OpenSoutheners\LaravelHelpers\Classes\class_namespace;
 use function OpenSoutheners\LaravelHelpers\Classes\class_use;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
+use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 class ClassesTest extends TestCase
 {
@@ -71,7 +70,7 @@ class ClassesTest extends TestCase
 
         $this->expectException(Exception::class);
         call_static(MyClass::class, 'method');
-        
+
         $this->expectException(Exception::class);
         call(MyClass::class, 'staticMethod');
 

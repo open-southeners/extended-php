@@ -18,7 +18,7 @@ class MyClass
     {
         return true;
     }
-    
+
     public static function staticMethodWithArgs($foo, $bar)
     {
         return compact('foo', 'bar');
