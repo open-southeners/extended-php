@@ -9,6 +9,8 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 
+use function OpenSoutheners\LaravelHelpers\Classes\call;
+use function OpenSoutheners\LaravelHelpers\Classes\call_static;
 use function OpenSoutheners\LaravelHelpers\Classes\class_implement;
 use function OpenSoutheners\LaravelHelpers\Classes\class_namespace;
 use function OpenSoutheners\LaravelHelpers\Classes\class_use;
@@ -41,5 +43,22 @@ class ClassesTest extends TestCase
         $this->assertFalse(class_use(Post::class, HasAttributes::class));
         $this->assertFalse(class_use(new Post(), HasAttributes::class));
         $this->assertFalse(class_use(Post::class, 'This/Does/Not/Exists'));
+    }
+
+    public function test_call()
+    {
+        $args = [
+            'foo' => 'hello',
+            'bar' => 'world',
+        ];
+
+        $this->assertTrue(call(MyClass::class, 'method'));
+        $this->assertTrue(call(new MyClass(), 'method'));
+        $this->assertEquals(call(MyClass::class, 'methodWithArgs', $args), $args);
+        $this->assertEquals(call(new MyClass(), 'methodWithArgs', $args), $args);
+        $this->assertTrue(call_static(MyClass::class, 'staticMethod'));
+        $this->assertTrue(call_static(new MyClass(), 'staticMethod'));
+        $this->assertEquals(call_static(MyClass::class, 'staticMethodWithArgs', $args), $args);
+        $this->assertEquals(call_static(new MyClass(), 'staticMethodWithArgs', $args), $args);
     }
 }
