@@ -43,6 +43,7 @@ function is_model($class)
 {
     try {
         $classReflection = new ReflectionClass($class);
+        /** @phpstan-ignore-next-line */
     } catch (Throwable $e) {
         return false;
     }
@@ -77,9 +78,7 @@ function instance_from($key, string $class, array $columns = ['*'])
         return call_static($key, 'findOrFail', compact('key', 'columns'));
     }
 
-    $stringifiedKey = is_object($key) ? class_basename($key) : $key;
-
-    throw (new ModelNotFoundException())->setModel($class, $stringifiedKey);
+    throw (new ModelNotFoundException())->setModel($class, $key);
 }
 
 /**
