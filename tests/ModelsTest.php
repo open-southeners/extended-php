@@ -11,19 +11,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Mockery;
-
 use function OpenSoutheners\LaravelHelpers\Models\instance_from;
 use function OpenSoutheners\LaravelHelpers\Models\is_model;
 use function OpenSoutheners\LaravelHelpers\Models\key_from;
 use function OpenSoutheners\LaravelHelpers\Models\model_from;
 use function OpenSoutheners\LaravelHelpers\Models\query_from;
-
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\User;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\UuidModel;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
 use PHPUnit\Framework\TestCase;
-use ReflectionException;
 
 class ModelsTest extends TestCase
 {
@@ -52,7 +49,7 @@ class ModelsTest extends TestCase
             $connection->shouldReceive('select')->andReturn(['id' => 1]);
             $connection->shouldReceive('find')->with(1)->andReturn(['id' => 1]);
         });
-        
+
         $this->mockConnectionForModel($user, 'SQLite', function ($connection) {
             $connection->shouldReceive('select')->andReturn(['id' => 2]);
             $connection->shouldReceive('find')->with(2)->andReturn(['id' => 2]);
@@ -68,7 +65,7 @@ class ModelsTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         instance_from('App\Post', Post::class);
     }
-    
+
     public function test_instance_from_with_non_existing_class_throws_exception()
     {
         $this->expectException(ModelNotFoundException::class);
@@ -80,13 +77,13 @@ class ModelsTest extends TestCase
         $this->expectException(ModelNotFoundException::class);
         instance_from(Model::class, Post::class);
     }
-    
+
     public function test_instance_from_an_unexisting_model_throws_exception()
     {
         $this->expectException(ModelNotFoundException::class);
         instance_from(1, Post::class);
     }
-    
+
     public function test_instance_from_with_different_classes_throws_exception()
     {
         $this->expectException(Exception::class);
@@ -100,7 +97,7 @@ class ModelsTest extends TestCase
         $modelKey = key_from($model);
         $this->assertIsNumeric($modelKey);
         $this->assertEquals(1, $modelKey);
-        
+
         $modelKey = key_from('122');
         $this->assertIsNumeric($modelKey);
         $this->assertEquals(122, $modelKey);
@@ -142,8 +139,8 @@ class ModelsTest extends TestCase
     {
         $grammarClass = 'Illuminate\Database\Query\Grammars\\'.$database.'Grammar';
         $processorClass = 'Illuminate\Database\Query\Processors\\'.$database.'Processor';
-        $grammar = new $grammarClass;
-        $processor = new $processorClass;
+        $grammar = new $grammarClass();
+        $processor = new $processorClass();
         $connection = Mockery::mock(ConnectionInterface::class, ['getQueryGrammar' => $grammar, 'getPostProcessor' => $processor]);
         $connection->shouldReceive('query')->andReturnUsing(function () use ($connection, $grammar, $processor) {
             return new BaseBuilder($connection, $grammar, $processor);

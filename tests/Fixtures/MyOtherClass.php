@@ -21,6 +21,6 @@ class MyOtherClass
 
     protected function anotherHidden()
     {
-        // 
+        //
     }
 }

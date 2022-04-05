@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use function OpenSoutheners\LaravelHelpers\Classes\call;
 use function OpenSoutheners\LaravelHelpers\Classes\call_static;
 use function OpenSoutheners\LaravelHelpers\Classes\class_exists;
-
 use ReflectionClass;
 use Throwable;
 
@@ -109,8 +108,9 @@ function key_from($model)
 
 /**
  * Get a new query instance from model or class string.
- * 
- * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|class-string|string|object $modelOrString 
+ *
+ * @param \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|class-string|string|object $modelOrString
+ *
  * @return \Illuminate\Database\Eloquent\Builder|false
  */
 function query_from($modelOrString)

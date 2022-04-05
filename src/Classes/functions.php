@@ -115,8 +115,9 @@ function call_static($class, string $method, array $args = [])
 
 /**
  * Get class string from object or class string.
- * 
+ *
  * @param object|class-string $objectOrClass
+ *
  * @return string
  */
 function class_from($objectOrClass)
@@ -126,10 +127,11 @@ function class_from($objectOrClass)
 
 /**
  * Checks if the object or class has been defined.
- * 
- * @param object|class-string $objectOrClass 
- * @param bool $autoload 
- * @return bool 
+ *
+ * @param object|class-string $objectOrClass
+ * @param bool                $autoload
+ *
+ * @return bool
  */
 function class_exists($objectOrClass, bool $autoload = true)
 {

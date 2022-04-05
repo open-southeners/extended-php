@@ -75,14 +75,14 @@ class ClassesTest extends TestCase
 
         $this->assertTrue(call(MyClass::class, 'method', $args));
     }
-    
+
     public function test_call_a_no_args_static_method_with_args_does_not_throws_exception()
     {
         $args = ['foo' => 'hello'];
 
         $this->assertTrue(call_static(MyClass::class, 'staticMethod', $args));
     }
-    
+
     public function test_call_a_protected_method_throws_exception()
     {
         $this->expectException(Exception::class);
@@ -94,19 +94,19 @@ class ClassesTest extends TestCase
         $this->expectException(Exception::class);
         call_static(MyClass::class, 'staticHidden');
     }
-    
+
     public function test_call_a_non_static_method_as_static_throws_exception()
     {
         $this->expectException(Exception::class);
         call_static(MyClass::class, 'method');
     }
-    
+
     public function test_call_a_non_existing_method_throws_exception()
     {
         $this->expectException(ReflectionException::class);
         call(MyClass::class, 'methodDoesNotExists');
     }
-    
+
     public function test_call_a_non_existing_static_method_throws_exception()
     {
         $this->expectException(ReflectionException::class);
