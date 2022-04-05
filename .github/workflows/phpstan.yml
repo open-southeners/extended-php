@@ -18,4 +18,6 @@ jobs:
           tools: phpstan
 
       - name: Run analysis
-        run: phpstan analyse --configuration phpstan.neon
+        run: |
+          composer require --dev nunomaduro/larastan orchestra/testbench
+          phpstan analyse
