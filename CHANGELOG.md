@@ -6,8 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-04-05
+
+### Added
+
+- `call` and `call_static` functions
+
+## [0.2.0] - 2022-04-04
+
+### Changed
+
+- Simplify tests and functions improving coverage
+- Move the repository to a new organization
+
 ## [0.1.0] - 2021-12-09
 
-## Added
+### Added
 
 - Initial release!
