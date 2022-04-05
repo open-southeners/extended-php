@@ -61,29 +61,64 @@ class ClassesTest extends TestCase
         $this->assertTrue(call_static(new MyClass(), 'staticMethod'));
         $this->assertEquals(call_static(MyClass::class, 'staticMethodWithArgs', $args), $args);
         $this->assertEquals(call_static(new MyClass(), 'staticMethodWithArgs', $args), $args);
+    }
 
-        $this->expectException(Exception::class);
-        call(MyClass::class, 'hidden');
-
-        $this->expectException(Exception::class);
-        call_static(MyClass::class, 'staticHidden');
-
-        $this->expectException(Exception::class);
-        call_static(MyClass::class, 'method');
-
+    public function test_call_static_method_as_non_static_throws_exception()
+    {
         $this->expectException(Exception::class);
         call(MyClass::class, 'staticMethod');
+    }
 
-        $this->expectException(ReflectionException::class);
-        call(MyClass::class, 'method', $args);
+    public function test_call_a_no_args_method_with_args_does_not_throws_exception()
+    {
+        $args = ['foo' => 'hello'];
 
-        $this->expectException(ReflectionException::class);
-        call_static(MyClass::class, 'staticMethod', $args);
+        $this->assertTrue(call(MyClass::class, 'method', $args));
+    }
+    
+    public function test_call_a_no_args_static_method_with_args_does_not_throws_exception()
+    {
+        $args = ['foo' => 'hello'];
 
+        $this->assertTrue(call_static(MyClass::class, 'staticMethod', $args));
+    }
+    
+    public function test_call_a_protected_method_throws_exception()
+    {
+        $this->expectException(Exception::class);
+        call(MyClass::class, 'hidden');
+    }
+
+    public function test_call_a_static_protected_method_throws_exception()
+    {
+        $this->expectException(Exception::class);
+        call_static(MyClass::class, 'staticHidden');
+    }
+    
+    public function test_call_a_non_static_method_as_static_throws_exception()
+    {
+        $this->expectException(Exception::class);
+        call_static(MyClass::class, 'method');
+    }
+    
+    public function test_call_a_non_existing_method_throws_exception()
+    {
         $this->expectException(ReflectionException::class);
         call(MyClass::class, 'methodDoesNotExists');
-
+    }
+    
+    public function test_call_a_non_existing_static_method_throws_exception()
+    {
         $this->expectException(ReflectionException::class);
         call_static(MyClass::class, 'staticMethodDoesNotExists');
+    }
+
+    public function test_nested_call()
+    {
+        $this->assertEquals(call(MyClass::class, 'getAnotherClass.anotherMethod', [
+            'getAnotherClass' => [
+                'foo' => 'hello',
+            ],
+        ]), 'hello');
     }
 }

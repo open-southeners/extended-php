@@ -4,6 +4,11 @@ namespace OpenSoutheners\LaravelHelpers\Tests\Fixtures;
 
 class MyClass
 {
+    public function getAnotherClass($foo)
+    {
+        return new MyOtherClass($foo);
+    }
+
     public function method()
     {
         return true;

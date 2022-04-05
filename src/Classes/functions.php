@@ -62,6 +62,17 @@ function class_use($class, string $trait, bool $recursive = false)
  */
 function call($class, string $method, array $args = [], bool $static = false)
 {
+    if (str_contains($method, '.')) {
+        $response = null;
+        $methodParts = explode('.', $method);
+
+        while ($methodPart = array_shift($methodParts)) {
+            $response = call($response ?? $class, $methodPart, $args[$methodPart] ?? [], $static);
+        }
+
+        return $response;
+    }
+
     $reflector = new ReflectionClass($class);
 
     $classMethod = $reflector->getMethod($method);
@@ -77,6 +88,10 @@ function call($class, string $method, array $args = [], bool $static = false)
         $methodType = $classMethod->isStatic() ? 'static' : 'non-static';
 
         throw new Exception(sprintf("Accessing as %s a %s method '%s' on class '%s'", $accessType, $methodType, $method, $class));
+    }
+
+    if (!$static && is_object($class)) {
+        return $classMethod->invoke($class, ...array_values($args));
     }
 
     return $classMethod->invoke($static ? null : new $class(), ...array_values($args));
@@ -96,4 +111,27 @@ function call($class, string $method, array $args = [], bool $static = false)
 function call_static($class, string $method, array $args = [])
 {
     return call($class, $method, $args, true);
+}
+
+/**
+ * Get class string from object or class string.
+ * 
+ * @param object|class-string $objectOrClass
+ * @return string
+ */
+function class_from($objectOrClass)
+{
+    return is_string($objectOrClass) ? $objectOrClass : get_class($objectOrClass);
+}
+
+/**
+ * Checks if the object or class has been defined.
+ * 
+ * @param object|class-string $objectOrClass 
+ * @param bool $autoload 
+ * @return bool 
+ */
+function class_exists($objectOrClass, bool $autoload = true)
+{
+    return \class_exists(class_from($objectOrClass), $autoload);
 }
