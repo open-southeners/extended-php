@@ -79,7 +79,7 @@ function call($class, string $method, array $args = [], bool $static = false)
         throw new Exception(sprintf("Accessing as %s a %s method '%s' on class '%s'", $accessType, $methodType, $method, $class));
     }
 
-    return $classMethod->invoke($static ? null : new $class(), ...$args);
+    return $classMethod->invoke($static ? null : new $class, ...array_values($args));
 }
 
 /**
