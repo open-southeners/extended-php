@@ -18,4 +18,4 @@ jobs:
           tools: phpstan
 
       - name: Run analysis
-        run: phpstan analyse
+        run: phpstan analyse --configuration phpstan.neon
