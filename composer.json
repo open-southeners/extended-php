@@ -31,7 +31,6 @@
         }
     },
     "require-dev": {
-        "laravel/database": "^8.53",
         "phpstan/phpstan": "^1.2",
         "nunomaduro/larastan": "^1.0",
         "orchestra/testbench": "^5.0|^6.0|^7.0",
