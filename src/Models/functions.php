@@ -5,7 +5,6 @@ namespace OpenSoutheners\LaravelHelpers\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use function OpenSoutheners\LaravelHelpers\Classes\call;
-use function OpenSoutheners\LaravelHelpers\Classes\call_static;
 use function OpenSoutheners\LaravelHelpers\Classes\class_exists;
 use ReflectionClass;
 use Throwable;
@@ -61,11 +60,11 @@ function is_model($class)
  * @param class-string<T>|string $class
  * @param array<string>          $columns
  *
- * @return T
+ * @return T|null
  */
 function instance_from($key, string $class, array $columns = ['*'])
 {
-    if (!\class_exists($class) || !is_model($class)) {
+    if (!\class_exists($class) || !is_model($class) || (is_object($key) && !is_model($key))) {
         throw (new ModelNotFoundException())->setModel($class);
     }
 
@@ -74,11 +73,7 @@ function instance_from($key, string $class, array $columns = ['*'])
         return $key;
     }
 
-    if (is_object($key)) {
-        return call_static($key, 'findOrFail', compact('key', 'columns'));
-    }
-
-    throw (new ModelNotFoundException())->setModel($class, $key);
+    return query_from($class)->whereKey($key)->first($columns);
 }
 
 /**
