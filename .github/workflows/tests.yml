@@ -5,6 +5,7 @@ on: [ push, pull_request ]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    if: ${{ !contains(github.event.head_commit.message, 'Apply fixes from StyleCI') }}
 
     strategy:
       fail-fast: true
