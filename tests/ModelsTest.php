@@ -2,7 +2,6 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use Exception;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +9,6 @@ use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Query\Builder as BaseBuilder;
-use Illuminate\Support\Facades\DB;
 use Mockery as m;
 use function OpenSoutheners\LaravelHelpers\Models\instance_from;
 use function OpenSoutheners\LaravelHelpers\Models\is_model;
@@ -133,12 +131,12 @@ class ModelsTest extends TestCase
         $this->assertTrue(query_from(Post::class) instanceof Builder);
         $this->assertTrue(query_from(Post::query()) instanceof Builder);
         $this->assertTrue(query_from((new BaseBuilder($this->mockConnection('SQLite')))->where('id', 2)) instanceof BaseBuilder);
-        
+
         $modelQuery = Post::query()->whereKey(1);
-        
+
         $this->assertNotEquals(query_from($modelQuery)->toSql(), $modelQuery->toSql());
     }
-    
+
     public function test_query_from_with_raw_class_returns_false()
     {
         $this->assertFalse(query_from((new MyClass())));
@@ -146,8 +144,9 @@ class ModelsTest extends TestCase
 
     /**
      * Mock database connection.
-     * 
-     * @param string $database 
+     *
+     * @param string $database
+     *
      * @return \Illuminate\Database\ConnectionInterface
      */
     protected function mockConnection($database)
@@ -168,11 +167,12 @@ class ModelsTest extends TestCase
 
     /**
      * Mock model database connection resolver.
-     * 
-     * @param string|object $model 
-     * @param string $database 
-     * @param callable|null $callback 
-     * @return void 
+     *
+     * @param string|object $model
+     * @param string        $database
+     * @param callable|null $callback
+     *
+     * @return void
      */
     protected function mockConnectionForModel($model, $database, $callback = null)
     {

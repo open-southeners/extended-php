@@ -23,8 +23,9 @@ function is_json(string $string)
 
 /**
  * Get domain part from email address.
- * 
- * @param string $email 
+ *
+ * @param string $email
+ *
  * @return string
  */
 function get_email_domain(string $email)
