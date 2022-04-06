@@ -20,3 +20,18 @@ function is_json(string $string)
 
     return true;
 }
+
+/**
+ * Get domain part from email address.
+ * 
+ * @param string $email 
+ * @return string
+ */
+function get_email_domain(string $email)
+{
+    if (!str_contains($email, '@')) {
+        return '';
+    }
+
+    return last(explode('@', $email));
+}
