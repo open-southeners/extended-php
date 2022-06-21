@@ -40,6 +40,10 @@ function model_from(string $value, bool $asClass = true, $namespace = 'App\Model
  */
 function is_model($class)
 {
+    if (!$class) {
+        return false;
+    }
+
     try {
         $classReflection = new ReflectionClass($class);
         /** @phpstan-ignore-next-line */

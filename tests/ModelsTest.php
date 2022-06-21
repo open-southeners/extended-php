@@ -20,6 +20,7 @@ use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\User;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\UuidModel;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyClass;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class ModelsTest extends TestCase
 {
@@ -37,6 +38,9 @@ class ModelsTest extends TestCase
         $this->assertFalse(is_model(Model::class));
         $this->assertTrue(is_model(Post::class));
         $this->assertTrue(is_model(User::class));
+        $this->assertFalse(is_model(null));
+        $this->assertFalse(is_model(''));
+        $this->assertFalse(is_model(new stdClass));
     }
 
     public function test_instance_from(): void
