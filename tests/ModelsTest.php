@@ -40,7 +40,7 @@ class ModelsTest extends TestCase
         $this->assertTrue(is_model(User::class));
         $this->assertFalse(is_model(null));
         $this->assertFalse(is_model(''));
-        $this->assertFalse(is_model(new stdClass));
+        $this->assertFalse(is_model(new stdClass()));
     }
 
     public function test_instance_from(): void
