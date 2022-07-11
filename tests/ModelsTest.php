@@ -149,8 +149,7 @@ class ModelsTest extends TestCase
     /**
      * Mock database connection.
      *
-     * @param string $database
-     *
+     * @param  string  $database
      * @return \Illuminate\Database\ConnectionInterface
      */
     protected function mockConnection($database)
@@ -172,10 +171,9 @@ class ModelsTest extends TestCase
     /**
      * Mock model database connection resolver.
      *
-     * @param string|object $model
-     * @param string        $database
-     * @param callable|null $callback
-     *
+     * @param  string|object  $model
+     * @param  string  $database
+     * @param  callable|null  $callback
      * @return void
      */
     protected function mockConnectionForModel($model, $database, $callback = null)

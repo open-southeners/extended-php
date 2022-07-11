@@ -9,8 +9,7 @@ use ReflectionException;
 /**
  * Check if class or object is a valid PHP enum.
  *
- * @param class-string|object $objectOrClass
- *
+ * @param  class-string|object  $objectOrClass
  * @return bool
  */
 function is_enum($objectOrClass)
@@ -28,14 +27,13 @@ function is_enum($objectOrClass)
 /**
  * Check if enum class or object has a case.
  *
- * @param class-string<object>|object $objectOrClass
- * @param string                      $case
- *
+ * @param  class-string<object>|object  $objectOrClass
+ * @param  string  $case
  * @return bool
  */
 function has_case($objectOrClass, string $case)
 {
-    if (!is_enum($objectOrClass)) {
+    if (! is_enum($objectOrClass)) {
         return false;
     }
 

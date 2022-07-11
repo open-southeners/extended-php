@@ -8,8 +8,7 @@ use ReflectionClass;
 /**
  * Get namespace from class string or object.
  *
- * @param object|string $class
- *
+ * @param  object|string  $class
  * @return string
  */
 function class_namespace($class)
@@ -24,9 +23,8 @@ function class_namespace($class)
 /**
  * Check if class instance or string uses an specific interface.
  *
- * @param object|string $class
- * @param string        $interface
- *
+ * @param  object|string  $class
+ * @param  string  $interface
  * @return bool
  */
 function class_implement($class, string $interface)
@@ -37,10 +35,9 @@ function class_implement($class, string $interface)
 /**
  * Check if class instance or string uses an specific trait.
  *
- * @param object|string $class
- * @param string        $trait
- * @param bool          $recursive
- *
+ * @param  object|string  $class
+ * @param  string  $trait
+ * @param  bool  $recursive
  * @return bool
  */
 function class_use($class, string $trait, bool $recursive = false)
@@ -53,11 +50,10 @@ function class_use($class, string $trait, bool $recursive = false)
  *
  * @template T
  *
- * @param class-string<T>|T|object $class
- * @param string                   $method
- * @param array                    $args
- * @param bool                     $static
- *
+ * @param  class-string<T>|T|object  $class
+ * @param  string  $method
+ * @param  array  $args
+ * @param  bool  $static
  * @return T|mixed
  */
 function call($class, string $method, array $args = [], bool $static = false)
@@ -79,7 +75,7 @@ function call($class, string $method, array $args = [], bool $static = false)
 
     $classMethod->setAccessible(true);
 
-    if (!$classMethod->isPublic()) {
+    if (! $classMethod->isPublic()) {
         throw new Exception("Method '${method}' is not public or accessible on class '{$reflector->getShortName()}'");
     }
 
@@ -90,7 +86,7 @@ function call($class, string $method, array $args = [], bool $static = false)
         throw new Exception(sprintf("Accessing as %s a %s method '%s' on class '%s'", $accessType, $methodType, $method, $class));
     }
 
-    if (!$static && is_object($class)) {
+    if (! $static && is_object($class)) {
         return $classMethod->invoke($class, ...array_values($args));
     }
 
@@ -102,10 +98,9 @@ function call($class, string $method, array $args = [], bool $static = false)
  *
  * @template T
  *
- * @param class-string<T>|T|object $class
- * @param string                   $method
- * @param array                    $args
- *
+ * @param  class-string<T>|T|object  $class
+ * @param  string  $method
+ * @param  array  $args
  * @return mixed
  */
 function call_static($class, string $method, array $args = [])
@@ -116,8 +111,7 @@ function call_static($class, string $method, array $args = [])
 /**
  * Get class string from object or class string.
  *
- * @param object|class-string $objectOrClass
- *
+ * @param  object|class-string  $objectOrClass
  * @return string
  */
 function class_from($objectOrClass)
@@ -128,9 +122,8 @@ function class_from($objectOrClass)
 /**
  * Checks if the object or class has been defined.
  *
- * @param object|class-string $objectOrClass
- * @param bool                $autoload
- *
+ * @param  object|class-string  $objectOrClass
+ * @param  bool  $autoload
  * @return bool
  */
 function class_exists($objectOrClass, bool $autoload = true)
