@@ -19,7 +19,11 @@ use Throwable;
  */
 function model_from(string $value, bool $asClass = true, $namespace = 'App\Models\\')
 {
-    $modelClass = $namespace.studly_case(class_basename($value));
+    $value = implode(
+        array_map(fn ($word) => ucfirst($word), explode(' ', str_replace(['-', '_'], ' ', $value)))
+    );
+
+    $modelClass = $namespace.class_basename($value);
 
     $modelClass = class_exists($modelClass) ? $modelClass : null;
 
