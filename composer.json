@@ -13,8 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenSoutheners\\LaravelHelpers\\": "src",
-            "OpenSoutheners\\LaravelHelpers\\Tests\\": "tests"
+            "OpenSoutheners\\LaravelHelpers\\": "src"
         },
         "files": [
             "src/Classes/functions.php",
@@ -22,6 +21,11 @@
             "src/Models/functions.php",
             "src/Strings/functions.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OpenSoutheners\\LaravelHelpers\\Tests\\": "tests"
+        }
     },
     "config": {
         "sort-packages": true,
