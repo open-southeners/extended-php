@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2022-07-15
+
+### Fixed
+
+- Missing autoload-dev, tests were autoloaded with the released version (ouch!)
+
 ## [0.6.0] - 2022-07-11
 
 ### Removed
