@@ -12,4 +12,14 @@ class User extends Model
      * @var string[]
      */
     protected $fillable = ['id'];
+
+    /**
+     * Get post that user owns.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

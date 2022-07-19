@@ -55,12 +55,22 @@ class ModelsTest extends TestCase
 
         $this->mockConnectionForModel($user, 'SQLite', function ($connection) {
             $connection->shouldReceive('select')->andReturn(['id' => 2]);
-            $connection->shouldReceive('find')->with(2)->andReturn(['id' => 2]);
+
+            $user = new User(['id' => 2]);
+            $user->setRelation('post', new Post(['id' => 6]));
+
+            $connection->shouldReceive('find')->with(2)->andReturn($user);
         });
 
         $this->assertTrue(instance_from($post, Post::class) instanceof Post);
         $this->assertTrue(instance_from($user, User::class) instanceof User);
         $this->assertTrue(instance_from(new User(['id' => 2]), User::class) instanceof User);
+
+        /** @var \OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\User $user */
+        $user = instance_from(new User(['id' => 2]), User::class, ['*'], ['post'], true);
+
+        $this->assertTrue($user instanceof User);
+        $this->assertTrue($user->relationLoaded('post'));
     }
 
     public function test_instance_from_with_non_existing_class_throws_exception()

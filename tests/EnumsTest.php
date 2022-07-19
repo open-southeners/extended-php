@@ -55,6 +55,10 @@ class EnumsTest extends TestCase
     {
         $this->assertEquals(get_enum_class(MyEnum::First), MyEnum::class);
         $this->assertEquals(get_enum_class(MyBackedEnum::tryFrom('first')), MyBackedEnum::class);
+
+        $this->expectException(Exception::class);
+        $this->expectErrorMessage('Object is not a valud enum.');
+        get_enum_class(Post::class);
     }
 
     public function test_enum_to_array(): void
@@ -66,6 +70,10 @@ class EnumsTest extends TestCase
         $this->assertIsArray($myBackedEnumArr);
         $this->assertEmpty(array_diff($myEnumArr, ['First', 'Second', 'Third']));
         $this->assertEmpty(array_diff($myBackedEnumArr, ['First' => 'first', 'Second' => 'second', 'Third' => 'third']));
+
+        $this->expectException(Exception::class);
+        $this->expectErrorMessage('Object is not a valud enum.');
+        enum_to_array(Post::class);
     }
 
     public function test_enum_values(): void
