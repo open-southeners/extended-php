@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2022-07-15
+
+### Changed
+
+- `Models\instance_from` now takes 2 more parameters (with relationships & enforce, which prevents lazyLoading when false)
+
 ## [0.6.1] - 2022-07-15
 
 ### Fixed
