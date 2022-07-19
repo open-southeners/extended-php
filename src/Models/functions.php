@@ -65,20 +65,22 @@ function is_model($class)
  * @param  T|int|null  $key
  * @param  class-string<T>|string  $class
  * @param  array<string>  $columns
+ * @param  array<string>  $with
+ * @param  bool  $enforce
  * @return T|null
  */
-function instance_from($key, string $class, array $columns = ['*'])
+function instance_from($key, string $class, array $columns = ['*'], array $with = [], $enforce = false)
 {
     if (! \class_exists($class) || ! is_model($class) || (is_object($key) && ! is_model($key))) {
         throw (new ModelNotFoundException())->setModel($class);
     }
 
-    if (is_model($key)) {
-        /** @var T */
-        return $key;
+    if (is_model($key) && $enforce) {
+        /** @var T $key */
+        return $key->loadMissing($with);
     }
 
-    return query_from($class)->whereKey($key)->first($columns);
+    return query_from($class)->with($with)->whereKey($key)->first($columns);
 }
 
 /**
