@@ -2,9 +2,12 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
+use Exception;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
+use function OpenSoutheners\LaravelHelpers\enum_is_backed;
 use function OpenSoutheners\LaravelHelpers\enum_to_array;
+use function OpenSoutheners\LaravelHelpers\enum_values;
 use function OpenSoutheners\LaravelHelpers\get_enum_class;
 use function OpenSoutheners\LaravelHelpers\has_case;
 use function OpenSoutheners\LaravelHelpers\is_enum;
@@ -27,6 +30,16 @@ class EnumsTest extends TestCase
         $this->assertFalse(is_enum(HasAttributes::class));
         $this->assertFalse(is_enum(new stdClass()));
         $this->assertFalse(is_enum(''));
+    }
+
+    public function test_enum_is_backed(): void
+    {
+        $this->assertFalse(enum_is_backed(MyEnum::class));
+        $this->assertTrue(enum_is_backed(MyBackedEnum::class));
+
+        $this->expectException(Exception::class);
+        $this->expectErrorMessage('Class or object is not an enum.');
+        enum_is_backed(Post::class);
     }
 
     public function test_has_case(): void
@@ -53,5 +66,16 @@ class EnumsTest extends TestCase
         $this->assertIsArray($myBackedEnumArr);
         $this->assertEmpty(array_diff($myEnumArr, ['First', 'Second', 'Third']));
         $this->assertEmpty(array_diff($myBackedEnumArr, ['First' => 'first', 'Second' => 'second', 'Third' => 'third']));
+    }
+
+    public function test_enum_values(): void
+    {
+        $this->assertFalse(enum_values(MyEnum::First));
+        $this->assertFalse(enum_values(MyEnum::class));
+
+        $myBackedEnumValuesArr = enum_values(MyBackedEnum::class);
+
+        $this->assertIsArray($myBackedEnumValuesArr);
+        $this->assertEmpty(array_diff($myBackedEnumValuesArr, ['first', 'second', 'third']));
     }
 }

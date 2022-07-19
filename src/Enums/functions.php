@@ -27,6 +27,21 @@ function is_enum($objectOrClass)
 }
 
 /**
+ * Check wether the enum is backed.
+ *
+ * @param  mixed  $object
+ * @return bool
+ */
+function enum_is_backed($objectOrClass)
+{
+    if (! is_enum($objectOrClass)) {
+        throw new Exception('Class or object is not an enum.');
+    }
+
+    return (new ReflectionEnum($objectOrClass))->isBacked();
+}
+
+/**
  * Check if enum class or object has a case.
  *
  * @param  class-string<object>|object  $objectOrClass
@@ -66,6 +81,8 @@ function get_enum_class($object)
  *
  * @param  \BackedEnum|\UnitEnum|object  $objectOrClass
  * @return array
+ *
+ * @throws \Exception
  */
 function enum_to_array($objectOrClass)
 {
@@ -84,4 +101,19 @@ function enum_to_array($objectOrClass)
     }
 
     return $enumArr;
+}
+
+/**
+ * Returns array of enum case values, false otherwise.
+ *
+ * @param  mixed  $objectOrClass
+ * @return false|array
+ */
+function enum_values($objectOrClass)
+{
+    if (! enum_is_backed($objectOrClass)) {
+        return false;
+    }
+
+    return array_values(enum_to_array($objectOrClass));
 }
