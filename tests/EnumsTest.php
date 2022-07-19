@@ -4,9 +4,12 @@ namespace OpenSoutheners\LaravelHelpers\Tests;
 
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
+use function OpenSoutheners\LaravelHelpers\enum_to_array;
+use function OpenSoutheners\LaravelHelpers\get_enum_class;
 use function OpenSoutheners\LaravelHelpers\has_case;
 use function OpenSoutheners\LaravelHelpers\is_enum;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
+use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyBackedEnum;
 use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -33,5 +36,22 @@ class EnumsTest extends TestCase
         $this->assertFalse(has_case(Post::class, 'First'));
         $this->assertFalse(has_case(Model::class, 'First'));
         $this->assertFalse(has_case(HasAttributes::class, 'First'));
+    }
+
+    public function test_get_enum_class(): void
+    {
+        $this->assertEquals(get_enum_class(MyEnum::First), MyEnum::class);
+        $this->assertEquals(get_enum_class(MyBackedEnum::tryFrom('first')), MyBackedEnum::class);
+    }
+
+    public function test_enum_to_array(): void
+    {
+        $myEnumArr = enum_to_array(MyEnum::First);
+        $myBackedEnumArr = enum_to_array(MyBackedEnum::tryFrom('first'));
+
+        $this->assertIsArray($myEnumArr);
+        $this->assertIsArray($myBackedEnumArr);
+        $this->assertEmpty(array_diff($myEnumArr, ['First', 'Second', 'Third']));
+        $this->assertEmpty(array_diff($myBackedEnumArr, ['First' => 'first', 'Second' => 'second', 'Third' => 'third']));
     }
 }

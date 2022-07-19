@@ -2,6 +2,8 @@
 
 namespace OpenSoutheners\LaravelHelpers;
 
+use BackedEnum;
+use Exception;
 use ReflectionClass;
 use ReflectionEnum;
 use ReflectionException;
@@ -40,4 +42,46 @@ function has_case($objectOrClass, string $case)
     $enumReflection = new ReflectionEnum($objectOrClass);
 
     return $enumReflection->hasCase($case);
+}
+
+/**
+ * Get enum class from object instance.
+ *
+ * @param  mixed  $object
+ * @return \BackedEnum|\UnitEnum
+ *
+ * @throws \Exception
+ */
+function get_enum_class($object)
+{
+    if (! is_enum($object)) {
+        throw new Exception('Object is not a valud enum.');
+    }
+
+    return (new ReflectionEnum($object))->getName();
+}
+
+/**
+ * Convert enum class or object to array.
+ *
+ * @param  \BackedEnum|\UnitEnum|object  $objectOrClass
+ * @return array
+ */
+function enum_to_array($objectOrClass)
+{
+    $enumClass = is_object($objectOrClass) ? get_enum_class($objectOrClass) : $objectOrClass;
+
+    if (! is_enum($enumClass)) {
+        throw new Exception('Object is not a valud enum.');
+    }
+
+    $enumArr = [];
+
+    foreach ($enumClass::cases() as $enumCase) {
+        $enumCase instanceof BackedEnum
+            ? $enumArr[$enumCase->name] = $enumCase->value
+            : $enumArr[] = $enumCase->name;
+    }
+
+    return $enumArr;
 }
