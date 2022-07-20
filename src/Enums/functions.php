@@ -35,7 +35,7 @@ function is_enum($objectOrClass)
 function enum_is_backed($objectOrClass)
 {
     if (! is_enum($objectOrClass)) {
-        throw new Exception('Class or object is not an enum.');
+        throw new Exception('Class or object is not a valid enum.');
     }
 
     return (new ReflectionEnum($objectOrClass))->isBacked();
@@ -51,7 +51,7 @@ function enum_is_backed($objectOrClass)
 function has_case($objectOrClass, string $case)
 {
     if (! is_enum($objectOrClass)) {
-        return false;
+        throw new Exception('Class or object is not a valid enum.');
     }
 
     $enumReflection = new ReflectionEnum($objectOrClass);
@@ -70,7 +70,7 @@ function has_case($objectOrClass, string $case)
 function get_enum_class($object)
 {
     if (! is_enum($object)) {
-        throw new Exception('Object is not a valud enum.');
+        throw new Exception('Object is not a valid enum.');
     }
 
     return (new ReflectionEnum($object))->getName();
@@ -89,7 +89,7 @@ function enum_to_array($objectOrClass)
     $enumClass = is_object($objectOrClass) ? get_enum_class($objectOrClass) : $objectOrClass;
 
     if (! is_enum($enumClass)) {
-        throw new Exception('Object is not a valud enum.');
+        throw new Exception('Class or object is not a valid enum.');
     }
 
     $enumArr = [];

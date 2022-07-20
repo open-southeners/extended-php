@@ -38,7 +38,7 @@ class EnumsTest extends TestCase
         $this->assertTrue(enum_is_backed(MyBackedEnum::class));
 
         $this->expectException(Exception::class);
-        $this->expectErrorMessage('Class or object is not an enum.');
+        $this->expectErrorMessage('Class or object is not a valid enum.');
         enum_is_backed(Post::class);
     }
 
@@ -46,9 +46,10 @@ class EnumsTest extends TestCase
     {
         $this->assertTrue(has_case(MyEnum::class, 'First'));
         $this->assertFalse(has_case(MyEnum::class, 'Something'));
+
+        $this->expectException(Exception::class);
+        $this->expectErrorMessage('Class or object is not a valid enum.');
         $this->assertFalse(has_case(Post::class, 'First'));
-        $this->assertFalse(has_case(Model::class, 'First'));
-        $this->assertFalse(has_case(HasAttributes::class, 'First'));
     }
 
     public function test_get_enum_class(): void
@@ -57,7 +58,7 @@ class EnumsTest extends TestCase
         $this->assertEquals(get_enum_class(MyBackedEnum::tryFrom('first')), MyBackedEnum::class);
 
         $this->expectException(Exception::class);
-        $this->expectErrorMessage('Object is not a valud enum.');
+        $this->expectErrorMessage('Object is not a valid enum.');
         get_enum_class(Post::class);
     }
 
@@ -72,7 +73,7 @@ class EnumsTest extends TestCase
         $this->assertEmpty(array_diff($myBackedEnumArr, ['First' => 'first', 'Second' => 'second', 'Third' => 'third']));
 
         $this->expectException(Exception::class);
-        $this->expectErrorMessage('Object is not a valud enum.');
+        $this->expectErrorMessage('Class or object is not a valid enum.');
         enum_to_array(Post::class);
     }
 
