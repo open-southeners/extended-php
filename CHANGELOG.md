@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Enum functions: `enum_is_backed`, `get_enum_class`, `enum_to_array`, `enum_values`
 
-## [0.7.0] - 2022-07-15
+## [0.7.0] - 2022-07-19
 
 ### Changed
 
