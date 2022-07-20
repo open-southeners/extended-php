@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2022-07-20
+
+### Changed
+
+- Enum functions now are namespaced as `OpenSoutheners\LaravelHelpers\Enums` instead of `OpenSoutheners\LaravelHelpers`
+
 ### Added
 
 - Enum functions: `enum_is_backed`, `get_enum_class`, `enum_to_array`, `enum_values`
