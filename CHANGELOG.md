@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Enum functions now are namespaced as `OpenSoutheners\LaravelHelpers\Enums` instead of `OpenSoutheners\LaravelHelpers`
+- `has_case` enum function now throws exception when value is not an enum
 
 ### Added
 
