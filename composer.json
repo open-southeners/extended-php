@@ -2,6 +2,11 @@
     "name": "open-southeners/laravel-helpers",
     "description": "Laravel extended helpers for PHP and framework features",
     "license": "MIT",
+    "homepage": "http://docs.opensoutheners.com/laravel-helpers/",
+    "support": {
+        "issues": "https://github.com/open-southeners/laravel-helpers/issues",
+        "source": "https://github.com/open-southeners/laravel-helpers"
+    },
     "authors": [
         {
             "name": "Rubén Robles",
