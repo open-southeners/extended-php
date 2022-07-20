@@ -5,7 +5,7 @@ namespace OpenSoutheners\LaravelHelpers\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use function OpenSoutheners\LaravelHelpers\Classes\call;
-use function OpenSoutheners\LaravelHelpers\Classes\class_exists;
+use function OpenSoutheners\LaravelHelpers\Classes\class_from;
 use ReflectionClass;
 use Throwable;
 
@@ -25,7 +25,7 @@ function model_from(string $value, bool $asClass = true, $namespace = 'App\Model
 
     $modelClass = $namespace.class_basename($value);
 
-    $modelClass = class_exists($modelClass) ? $modelClass : null;
+    $modelClass = \class_exists(class_from($modelClass)) ? $modelClass : null;
 
     if (! $asClass && $modelClass !== null) {
         return new $modelClass();
@@ -71,7 +71,7 @@ function is_model($class)
  */
 function instance_from($key, string $class, array $columns = ['*'], array $with = [], $enforce = false)
 {
-    if (! \class_exists($class) || ! is_model($class) || (is_object($key) && ! is_model($key))) {
+    if (! \class_exists($class) || ! is_model($class) || (\is_object($key) && ! is_model($key))) {
         throw (new ModelNotFoundException())->setModel($class);
     }
 
@@ -114,7 +114,7 @@ function key_from($model)
  */
 function query_from($modelOrString)
 {
-    if (class_exists($modelOrString) && method_exists($modelOrString, 'newQuery')) {
+    if (\class_exists(class_from($modelOrString)) && \method_exists($modelOrString, 'newQuery')) {
         return call($modelOrString, 'newQuery');
     }
 

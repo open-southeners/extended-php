@@ -118,15 +118,3 @@ function class_from($objectOrClass)
 {
     return is_string($objectOrClass) ? $objectOrClass : get_class($objectOrClass);
 }
-
-/**
- * Checks if the object or class has been defined.
- *
- * @param  object|class-string  $objectOrClass
- * @param  bool  $autoload
- * @return bool
- */
-function class_exists($objectOrClass, bool $autoload = true)
-{
-    return \class_exists(class_from($objectOrClass), $autoload);
-}
