@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2022-07-21
+
+### Removed
+
+- `class_exists` function, using PHP's instead (was an anti-pattern function)
+
 ## [0.8.0] - 2022-07-20
 
 ### Changed
