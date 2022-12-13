@@ -29,7 +29,7 @@ function is_enum($objectOrClass)
 /**
  * Check wether the enum is backed.
  *
- * @param  mixed  $object
+ * @param  mixed  $objectOrClass
  * @return bool
  */
 function enum_is_backed($objectOrClass)
@@ -79,7 +79,7 @@ function get_enum_class($object)
 /**
  * Convert enum class or object to array.
  *
- * @param  \BackedEnum|\UnitEnum|object  $objectOrClass
+ * @param  class-string<\BackedEnum|\UnitEnum>|\BackedEnum|\UnitEnum|object  $objectOrClass
  * @return array
  *
  * @throws \Exception
