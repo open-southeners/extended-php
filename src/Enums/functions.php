@@ -63,7 +63,7 @@ function has_case($objectOrClass, string $case)
  * Get enum class from object instance.
  *
  * @param  mixed  $object
- * @return \BackedEnum|\UnitEnum
+ * @return class-string<\BackedEnum|\UnitEnum>
  *
  * @throws \Exception
  */
