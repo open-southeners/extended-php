@@ -11,7 +11,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest ]
-        php: [8.0, 8.1]
+        php: [8.0, 8.1, 8.2]
         dependency-version: [ prefer-stable ]
 
     name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
@@ -34,10 +34,10 @@ jobs:
       - name: Execute tests
         run: |
           cp phpunit-coverage.dist.xml phpunit.xml
-          vendor/bin/phpunit $( [[ '${{ matrix.php }}' != '8.1' ]] && printf %s '--exclude-group needsPhp81' )
+          vendor/bin/phpunit $( [[ '${{ matrix.php }}' == '8.0' ]] && printf %s '--exclude-group needsPhp81' )
 
       - name: Deploy coverage to codacy
-        if: matrix.php == '8.1'
+        if: matrix.php == '8.2'
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           # project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}

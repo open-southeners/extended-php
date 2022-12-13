@@ -76,7 +76,7 @@ function call($class, string $method, array $args = [], bool $static = false)
     $classMethod->setAccessible(true);
 
     if (! $classMethod->isPublic()) {
-        throw new Exception("Method '${method}' is not public or accessible on class '{$reflector->getShortName()}'");
+        throw new Exception(sprintf("Method '%s' is not public or accessible on class '%s'", $method, $reflector->getShortName()));
     }
 
     if ($classMethod->isStatic() !== $static) {
