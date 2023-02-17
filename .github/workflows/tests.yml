@@ -5,7 +5,6 @@ on: [ push, pull_request ]
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    if: ${{ !contains(github.event.head_commit.message, 'Apply fixes from StyleCI') }}
 
     strategy:
       fail-fast: true
@@ -44,15 +43,11 @@ jobs:
 
       - name: Execute tests
         if: matrix.php == '8.0'
-        run: |
-          cp phpunit.dist.xml phpunit.xml
-          vendor/bin/phpunit --exclude-group needsPhp81
+        run: vendor/bin/phpunit -c phpunit-coverage.dist.xml --exclude-group needsPhp81
 
       - name: Execute tests
         if: matrix.php != '8.0'
-        run: |
-          cp phpunit-coverage.dist.xml phpunit.xml
-          vendor/bin/phpunit
+        run: vendor/bin/phpunit -c phpunit-coverage.dist.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
