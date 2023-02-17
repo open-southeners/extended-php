@@ -7,11 +7,8 @@ use ReflectionClass;
 
 /**
  * Get namespace from class string or object.
- *
- * @param  object|string  $class
- * @return string
  */
-function class_namespace($class)
+function class_namespace(object|string $class): string
 {
     $classArr = explode('\\', is_object($class) ? get_class($class) : $class);
 
@@ -22,25 +19,16 @@ function class_namespace($class)
 
 /**
  * Check if class instance or string uses an specific interface.
- *
- * @param  object|string  $class
- * @param  string  $interface
- * @return bool
  */
-function class_implement($class, string $interface)
+function class_implement(object|string $class, string $interface): bool
 {
     return in_array($interface, class_implements($class));
 }
 
 /**
  * Check if class instance or string uses an specific trait.
- *
- * @param  object|string  $class
- * @param  string  $trait
- * @param  bool  $recursive
- * @return bool
  */
-function class_use($class, string $trait, bool $recursive = false)
+function class_use(object|string $class, string $trait, bool $recursive = false): bool
 {
     return in_array($trait, $recursive ? class_uses_recursive($class) : class_uses($class));
 }
@@ -51,9 +39,6 @@ function class_use($class, string $trait, bool $recursive = false)
  * @template T
  *
  * @param  class-string<T>|T|object  $class
- * @param  string  $method
- * @param  array  $args
- * @param  bool  $static
  * @return T|mixed
  */
 function call($class, string $method, array $args = [], bool $static = false)
@@ -99,22 +84,16 @@ function call($class, string $method, array $args = [], bool $static = false)
  * @template T
  *
  * @param  class-string<T>|T|object  $class
- * @param  string  $method
- * @param  array  $args
- * @return mixed
  */
-function call_static($class, string $method, array $args = [])
+function call_static($class, string $method, array $args = []): mixed
 {
     return call($class, $method, $args, true);
 }
 
 /**
  * Get class string from object or class string.
- *
- * @param  object|class-string  $objectOrClass
- * @return string
  */
-function class_from($objectOrClass)
+function class_from(object|string $class): string
 {
-    return is_string($objectOrClass) ? $objectOrClass : get_class($objectOrClass);
+    return is_string($class) ? $class : get_class($class);
 }

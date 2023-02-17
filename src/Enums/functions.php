@@ -10,15 +10,11 @@ use ReflectionException;
 
 /**
  * Check if class or object is a valid PHP enum.
- *
- * @param  class-string|object  $objectOrClass
- * @return bool
  */
-function is_enum($objectOrClass)
+function is_enum(object|string $class): bool
 {
     try {
-        $classReflection = new ReflectionClass($objectOrClass);
-        /** @phpstan-ignore-next-line */
+        $classReflection = new ReflectionClass($class);
     } catch (ReflectionException $e) {
         return false;
     }
@@ -28,33 +24,26 @@ function is_enum($objectOrClass)
 
 /**
  * Check wether the enum is backed.
- *
- * @param  mixed  $objectOrClass
- * @return bool
  */
-function enum_is_backed($objectOrClass)
+function enum_is_backed(object|string $class): bool
 {
-    if (! is_enum($objectOrClass)) {
+    if (! is_enum($class)) {
         throw new Exception('Class or object is not a valid enum.');
     }
 
-    return (new ReflectionEnum($objectOrClass))->isBacked();
+    return (new ReflectionEnum($class))->isBacked();
 }
 
 /**
  * Check if enum class or object has a case.
- *
- * @param  class-string<object>|object  $objectOrClass
- * @param  string  $case
- * @return bool
  */
-function has_case($objectOrClass, string $case)
+function has_case(object|string $class, string $case): bool
 {
-    if (! is_enum($objectOrClass)) {
+    if (! is_enum($class)) {
         throw new Exception('Class or object is not a valid enum.');
     }
 
-    $enumReflection = new ReflectionEnum($objectOrClass);
+    $enumReflection = new ReflectionEnum($class);
 
     return $enumReflection->hasCase($case);
 }
@@ -62,12 +51,12 @@ function has_case($objectOrClass, string $case)
 /**
  * Get enum class from object instance.
  *
- * @param  mixed  $object
+ * @param  object  $object
  * @return class-string<\BackedEnum|\UnitEnum>
  *
  * @throws \Exception
  */
-function get_enum_class($object)
+function get_enum_class($object): string
 {
     if (! is_enum($object)) {
         throw new Exception('Object is not a valid enum.');
@@ -79,14 +68,11 @@ function get_enum_class($object)
 /**
  * Convert enum class or object to array.
  *
- * @param  class-string<\BackedEnum|\UnitEnum>|\BackedEnum|\UnitEnum|object  $objectOrClass
- * @return array
- *
  * @throws \Exception
  */
-function enum_to_array($objectOrClass)
+function enum_to_array(object|string $class): array
 {
-    $enumClass = is_object($objectOrClass) ? get_enum_class($objectOrClass) : $objectOrClass;
+    $enumClass = is_object($class) ? get_enum_class($class) : $class;
 
     if (! is_enum($enumClass)) {
         throw new Exception('Class or object is not a valid enum.');
@@ -105,15 +91,12 @@ function enum_to_array($objectOrClass)
 
 /**
  * Returns array of enum case values, false otherwise.
- *
- * @param  mixed  $objectOrClass
- * @return false|array
  */
-function enum_values($objectOrClass)
+function enum_values(object|string $class): array|bool
 {
-    if (! enum_is_backed($objectOrClass)) {
+    if (! enum_is_backed($class)) {
         return false;
     }
 
-    return array_values(enum_to_array($objectOrClass));
+    return array_values(enum_to_array($class));
 }

@@ -12,12 +12,9 @@ use Throwable;
 /**
  * Get model from class or string (by name).
  *
- * @param  string  $value
- * @param  bool  $asClass
- * @param  string  $namespace
  * @return \Illuminate\Database\Eloquent\Model|class-string<\Illuminate\Database\Eloquent\Model>|null
  */
-function model_from(string $value, bool $asClass = true, $namespace = 'App\Models\\')
+function model_from(string $value, bool $asClass = true, string $namespace = 'App\Models\\')
 {
     $value = implode(
         array_map(fn ($word) => ucfirst($word), explode(' ', str_replace(['-', '_'], ' ', $value)))
@@ -37,10 +34,9 @@ function model_from(string $value, bool $asClass = true, $namespace = 'App\Model
 /**
  * Check if object or class string is a valid Laravel model.
  *
- * @param  class-string<object>|object  $class
- * @return bool
+ * @param  \Illuminate\Database\Eloquent\Model|object|string  $class
  */
-function is_model($class)
+function is_model(mixed $class): bool
 {
     if (! $class) {
         return false;
@@ -48,7 +44,6 @@ function is_model($class)
 
     try {
         $classReflection = new ReflectionClass($class);
-        /** @phpstan-ignore-next-line */
     } catch (Throwable $e) {
         return false;
     }
@@ -66,10 +61,9 @@ function is_model($class)
  * @param  class-string<T>|string  $class
  * @param  array<string>  $columns
  * @param  array<string>  $with
- * @param  bool  $enforce
  * @return T|null
  */
-function instance_from($key, string $class, array $columns = ['*'], array $with = [], $enforce = false)
+function instance_from(mixed $key, string $class, array $columns = ['*'], array $with = [], bool $enforce = false)
 {
     if (! \class_exists($class) || ! is_model($class) || (\is_object($key) && ! is_model($key))) {
         throw (new ModelNotFoundException())->setModel($class);
@@ -87,9 +81,8 @@ function instance_from($key, string $class, array $columns = ['*'], array $with 
  * Get key (id) from a mix-typed parameter.
  *
  * @param  \Illuminate\Database\Eloquent\Model|string|int  $model
- * @return mixed
  */
-function key_from($model)
+function key_from($model): mixed
 {
     if (is_numeric($model)) {
         return (int) $model;
@@ -109,17 +102,17 @@ function key_from($model)
 /**
  * Get a new query instance from model or class string.
  *
- * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|class-string|string|object  $modelOrString
+ * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder|class-string|string|object  $model
  * @return \Illuminate\Database\Eloquent\Builder|false
  */
-function query_from($modelOrString)
+function query_from($model)
 {
-    if (\class_exists(class_from($modelOrString)) && \method_exists($modelOrString, 'newQuery')) {
-        return call($modelOrString, 'newQuery');
+    if (\class_exists(class_from($model)) && \method_exists($model, 'newQuery')) {
+        return call($model, 'newQuery');
     }
 
-    if ($modelOrString instanceof Builder) {
-        return call($modelOrString, 'newModelInstance.newQuery');
+    if ($model instanceof Builder) {
+        return call($model, 'newModelInstance.newQuery');
     }
 
     return false;

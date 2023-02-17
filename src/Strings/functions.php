@@ -4,11 +4,8 @@ namespace OpenSoutheners\LaravelHelpers\Strings;
 
 /**
  * Check if string is a valid JSON structure.
- *
- * @param  string  $string
- * @return bool
  */
-function is_json(string $string)
+function is_json(string $string): bool
 {
     if (
         null === \json_decode($string, false, 512, JSON_UNESCAPED_UNICODE)
@@ -22,11 +19,8 @@ function is_json(string $string)
 
 /**
  * Get domain part from email address.
- *
- * @param  string  $email
- * @return string
  */
-function get_email_domain(string $email)
+function get_email_domain(string $email): string
 {
     if (! str_contains($email, '@')) {
         return '';
