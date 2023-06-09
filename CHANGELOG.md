@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.11.0] - 2023-06-10
+
+### Added
+
+- `OpenSoutheners\LaravelHelpers\Enums\GetsAttributes` trait and `OpenSoutheners\LaravelHelpers\Enums\Description` attribute so enums cases can be described and used in arrays.
+
 ## [0.10.0] - 2023-02-17
 
 ### Added
