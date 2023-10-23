@@ -22,7 +22,8 @@
         "nunomaduro/larastan": "^2.0",
         "orchestra/testbench": "^7.0 || ^8.0",
         "phpstan/phpstan": "^1.2",
-        "phpunit/phpunit": "^9.0 || ^10.0"
+        "phpunit/phpunit": "^9.0 || ^10.0",
+        "symfony/http-foundation": "^6.4"
     },
     "suggest": {
         "symfony/http-foundation": "Required if some HTTP based utils functions are used."
