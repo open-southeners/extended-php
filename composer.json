@@ -24,6 +24,9 @@
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.0 || ^10.0"
     },
+    "suggest": {
+        "symfony/http-foundation": "Required if some HTTP based utils functions are used."
+    },
     "autoload": {
         "psr-4": {
             "OpenSoutheners\\LaravelHelpers\\": "src"
@@ -32,7 +35,8 @@
             "src/Classes/functions.php",
             "src/Enums/functions.php",
             "src/Models/functions.php",
-            "src/Strings/functions.php"
+            "src/Strings/functions.php",
+            "src/Utils/functions.php"
         ]
     },
     "autoload-dev": {
