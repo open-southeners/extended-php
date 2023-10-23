@@ -2,9 +2,9 @@
 
 namespace OpenSoutheners\LaravelHelpers\Tests;
 
-use PHPUnit\Framework\TestCase;
-use function OpenSoutheners\LaravelHelpers\Utils\parse_http_query;
 use function OpenSoutheners\LaravelHelpers\Utils\build_http_query;
+use function OpenSoutheners\LaravelHelpers\Utils\parse_http_query;
+use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {

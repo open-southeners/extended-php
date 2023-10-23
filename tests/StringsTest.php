@@ -4,11 +4,11 @@ namespace OpenSoutheners\LaravelHelpers\Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
-use Throwable;
 use function OpenSoutheners\LaravelHelpers\Strings\get_email_domain;
 use function OpenSoutheners\LaravelHelpers\Strings\is_json;
 use function OpenSoutheners\LaravelHelpers\Strings\is_json_structure;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class StringsTest extends TestCase
 {
@@ -22,8 +22,8 @@ class StringsTest extends TestCase
             $this->assertTrue(is_json('[{}]'));
             $this->assertTrue(is_json('{"foo": "bar"}'));
             $this->assertTrue(is_json('[{"foo": "bar"}]'));
-            $this->assertTrue(is_json("0"));
-            $this->assertTrue(is_json("\"hello\""));
+            $this->assertTrue(is_json('0'));
+            $this->assertTrue(is_json('"hello"'));
             $this->assertFalse(is_json("{\u0022foo\u0022: \u0022bar\u0022}"));
             $this->assertFalse(is_json([]));
             $this->assertFalse(is_json(new \stdClass()));
@@ -53,8 +53,8 @@ class StringsTest extends TestCase
         $this->assertTrue(is_json_structure('[{"foo": "bar"}]'));
         $this->assertFalse(is_json_structure('{"foo": "bar"]'));
         $this->assertFalse(is_json_structure('[{"foo": "bar"]]'));
-        $this->assertFalse(is_json_structure("0"));
-        $this->assertFalse(is_json_structure("\"hello\""));
+        $this->assertFalse(is_json_structure('0'));
+        $this->assertFalse(is_json_structure('"hello"'));
         $this->assertFalse(is_json_structure("{\u0022foo\u0022: \u0022bar\u0022}"));
         $this->assertFalse(is_json_structure([]));
         $this->assertFalse(is_json_structure(new \stdClass()));

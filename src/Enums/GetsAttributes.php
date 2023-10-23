@@ -29,7 +29,7 @@ trait GetsAttributes
 
     /**
      * Get enum as select array using descriptions (enum values as array keys)
-     * 
+     *
      * @return array<string, string>
      */
     public static function asSelectArray(): array
