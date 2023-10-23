@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0] - 2023-10-23
+
+### Added
+
+- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` function for HTTP query parameters parse to multidimensional arrays
+- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` function for HTTP query parameters build from arrays
+
 ## [0.12.0] - 2023-10-23
 
 ### Added
