@@ -15,7 +15,6 @@ function is_json(mixed $value): bool
 
     if (
         ! is_string($value)
-        || (! str_starts_with($value, '{') && ! str_starts_with($value, '['))
         || (null === \json_decode($value, false, 512, JSON_UNESCAPED_UNICODE)
             && JSON_ERROR_NONE !== \json_last_error())
     ) {
@@ -23,6 +22,22 @@ function is_json(mixed $value): bool
     }
 
     return true;
+}
+
+/**
+ * Finds whether a variable is a valid JSON structure (object or array).
+ */
+function is_json_structure(mixed $value): bool
+{
+    $checkFn = function (string $string): bool {
+        return str_starts_with($string, '{') || str_starts_with($string, '[');
+    };
+
+    if (is_string($value) && version_compare(PHP_VERSION, '8.3', '>')) {
+        return json_validate($value) && $checkFn($value);
+    }
+
+    return is_json($value) && $checkFn($value);
 }
 
 /**
