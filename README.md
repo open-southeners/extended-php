@@ -1,10 +1,7 @@
-# Laravel helpers
+Laravel helpers [![required php version](https://img.shields.io/packagist/php-v/open-southeners/laravel-helpers)](https://www.php.net/supported-versions.php) [![run-tests](https://github.com/open-southeners/laravel-helpers/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/open-southeners/laravel-helpers/actions/workflows/tests.yml) [![codecov](https://codecov.io/gh/open-southeners/laravel-helpers/branch/main/graph/badge.svg?token=GY3974Z90U)](https://codecov.io/gh/open-southeners/laravel-helpers) [![Edit on VSCode online](https://img.shields.io/badge/vscode-edit%20online-blue?logo=visualstudiocode)](https://vscode.dev/github/open-southeners/laravel-helpers)
+===
 
 Laravel extended helpers for PHP and framework features
-
-## Status
-
-[![latest tag](https://img.shields.io/github/v/tag/open-southeners/laravel-helpers?label=latest&sort=semver)](https://github.com/open-southeners/laravel-helpers/releases/latest) [![packagist version](https://img.shields.io/packagist/v/open-southeners/laravel-helpers)](https://packagist.org/packages/open-southeners/laravel-helpers) [![required php version](https://img.shields.io/packagist/php-v/open-southeners/laravel-helpers)](https://www.php.net/supported-versions.php) [![run-tests](https://github.com/open-southeners/laravel-helpers/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/open-southeners/laravel-helpers/actions/workflows/tests.yml) [![phpstan](https://github.com/open-southeners/laravel-helpers/actions/workflows/phpstan.yml/badge.svg)](https://github.com/open-southeners/laravel-helpers/actions/workflows/phpstan.yml) [![Laravel Pint](https://img.shields.io/badge/code%20style-pint-orange?logo=laravel)](https://github.com/open-southeners/laravel-helpers/actions/workflows/pint.yml) [![codecov](https://codecov.io/gh/open-southeners/laravel-helpers/branch/main/graph/badge.svg?token=GY3974Z90U)](https://codecov.io/gh/open-southeners/laravel-helpers) [![Edit on VSCode online](https://img.shields.io/badge/vscode-edit%20online-blue?logo=visualstudiocode)](https://vscode.dev/github/open-southeners/laravel-helpers)
 
 ## Getting started
 
