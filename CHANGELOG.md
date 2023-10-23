@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `OpenSoutheners\LaravelHelpers\Strings\is_json_structure` function that covers what `is_json` does not, will also check if the json is a structure and not cases like `0`, `"0"`, `"hello world"`... which are valid in `is_json`
 - `OpenSoutheners\LaravelHelpers\Strings\is_json` fallback to PHP 8.3 `json_validate` native function with deprecation warning
 
 ### Changed
