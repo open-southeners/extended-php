@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2023-10-23
+
+### Added
+
+- `OpenSoutheners\LaravelHelpers\Strings\is_json` fallback to PHP 8.3 `json_validate` native function with deprecation warning
+
+### Changed
+
+- `OpenSoutheners\LaravelHelpers\Strings\is_json` now accepts any type as input value following PHP's functions
+
 ## [0.11.0] - 2023-06-10
 
 ### Added
