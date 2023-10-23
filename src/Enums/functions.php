@@ -23,7 +23,7 @@ function is_enum(object|string $class): bool
 }
 
 /**
- * Check wether the enum is backed.
+ * Check whether the enum class is backed.
  */
 function enum_is_backed(object|string $class): bool
 {

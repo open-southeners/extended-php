@@ -3,13 +3,15 @@
 namespace OpenSoutheners\LaravelHelpers\Strings;
 
 /**
- * Check if string is a valid JSON structure.
+ * Finds whether a variable is a valid JSON string.
  */
-function is_json(string $string): bool
+function is_json(mixed $value): bool
 {
     if (
-        null === \json_decode($string, false, 512, JSON_UNESCAPED_UNICODE)
-        && JSON_ERROR_NONE !== \json_last_error()
+        ! is_string($value)
+        || (! str_starts_with($value, '{') && ! str_starts_with($value, '['))
+        || (null === \json_decode($value, false, 512, JSON_UNESCAPED_UNICODE)
+            && JSON_ERROR_NONE !== \json_last_error())
     ) {
         return false;
     }

@@ -15,6 +15,10 @@ class StringsTest extends TestCase
         $this->assertTrue(is_json('{"foo": "bar"}'));
         $this->assertTrue(is_json('{"foo": "bar"}'));
         $this->assertFalse(is_json("{\u0022foo\u0022: \u0022bar\u0022}"));
+        $this->assertFalse(is_json("0"));
+        $this->assertFalse(is_json([]));
+        $this->assertFalse(is_json(new \stdClass()));
+        $this->assertFalse(is_json(1));
     }
 
     public function test_get_email_domain(): void
