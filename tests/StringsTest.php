@@ -45,6 +45,8 @@ class StringsTest extends TestCase
 
     public function test_is_json_structure()
     {
+        $this->withoutDeprecationHandling();
+
         $this->assertTrue(is_json_structure('{}'));
         $this->assertTrue(is_json_structure('[{}]'));
         $this->assertTrue(is_json_structure('{"foo": "bar"}'));
