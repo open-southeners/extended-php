@@ -10,6 +10,10 @@ class StringsTest extends TestCase
 {
     public function test_is_json(): void
     {
+        if (version_compare(PHP_VERSION, '8.3', '>')) {
+            $this->expectException('is_json function is deprecated. In PHP 8.3+ better use json_validate native function.');
+        }
+
         $this->assertTrue(is_json('{}'));
         $this->assertTrue(is_json('[{}]'));
         $this->assertTrue(is_json('{"foo": "bar"}'));

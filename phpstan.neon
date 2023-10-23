@@ -6,3 +6,6 @@ parameters:
     
     paths:
         - src
+    
+    ignoreErrors:
+        - '#Function json_validate not found.#'

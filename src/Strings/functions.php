@@ -7,6 +7,12 @@ namespace OpenSoutheners\LaravelHelpers\Strings;
  */
 function is_json(mixed $value): bool
 {
+    if (is_string($value) && version_compare(PHP_VERSION, '8.3', '>')) {
+        trigger_error('is_json function is deprecated. In PHP 8.3+ better use json_validate native function.', E_USER_DEPRECATED);
+
+        return is_string($value) && json_validate($value);
+    }
+
     if (
         ! is_string($value)
         || (! str_starts_with($value, '{') && ! str_starts_with($value, '['))
