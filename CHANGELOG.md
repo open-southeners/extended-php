@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.1] - 2023-10-24
+
+### Fixed
+
+- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` with nested modifiers under parameter keys & simple values (strings)
+- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` with nested modifiers under parameter keys & simple values (strings)
+
 ## [0.13.0] - 2023-10-23
 
 ### Added
