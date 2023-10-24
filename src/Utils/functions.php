@@ -11,43 +11,41 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
  */
 function parse_http_query(string $query = null): array
 {
-    $queryParameters = HeaderUtils::parseQuery($query ?? $_SERVER['QUERY_STRING']);
+    $query ??= $_SERVER['QUERY_STRING'] ?? '';
+
+    if (substr($query, 0, 1) === '?') {
+        $query = substr($query, 1, strlen($query));
+    }
+
+    $queryParameters = array_map([HeaderUtils::class, 'parseQuery'], explode('&', $query));
 
     $processedQueryParameters = [];
 
-    foreach ($queryParameters as $key => $value) {
-        $parameterKey = array_key_first($value);
+    $iterator = function ($value, $key, $aggregator) use (&$processedQueryParameters, &$iterator) {
+        $firstItemKey = is_array($value) ? array_key_first($value) : null;
 
-        $parameterGroup = $key;
+        if ($firstItemKey && is_array($value[$firstItemKey]) && is_int($key)) {
+            array_walk($value[$firstItemKey], $iterator, $firstItemKey);
 
-        if (substr($parameterGroup, 0, 1) === '?') {
-            $parameterGroup = substr($parameterGroup, 1, strlen($parameterGroup));
+            return;
         }
 
-        if (! isset($processedQueryParameters[$parameterGroup])) {
-            $processedQueryParameters[$parameterGroup] = [];
+        if ($aggregator) {
+            $processedQueryParameters[$aggregator] = array_merge_recursive($processedQueryParameters[$aggregator] ?? [], [$key => $value]);
+            
+            return;
         }
 
-        if (isset($processedQueryParameters[$parameterGroup][$parameterKey]) && is_array($value[$parameterKey])) {
-            $processedQueryParameters[$parameterGroup][$parameterKey] = array_merge_recursive(
-                $value[$parameterKey],
-                $processedQueryParameters[$parameterGroup][$parameterKey] ?? []
-            );
+        if (is_int($key) && is_string($firstItemKey)) {
+            $processedQueryParameters[$firstItemKey] = $value[$firstItemKey];
 
-            continue;
+            return;
         }
 
-        if (isset($processedQueryParameters[$parameterGroup][$parameterKey]) && is_string($value[$parameterKey])) {
-            $processedQueryParameters[$parameterGroup][$parameterKey] = implode(',', array_merge(
-                explode(',', $value[$parameterKey]),
-                explode(',', $processedQueryParameters[$parameterGroup][$parameterKey])
-            ));
+        $processedQueryParameters[$key] = $value;
+    };
 
-            continue;
-        }
-
-        $processedQueryParameters[$parameterGroup][$parameterKey] = $value[$parameterKey];
-    }
+    array_walk($queryParameters, $iterator, null);
 
     return $processedQueryParameters;
 }
@@ -80,14 +78,16 @@ function build_http_query(array $query): string
             return;
         }
 
-        $value = (array) $value;
+        if (is_array($value)) {
+            array_walk($value, $iterator, $paremeterKey);
 
-        array_walk_recursive($value, function ($value) use (&$resultQuery, $paremeterKey) {
-            $resultQuery[] = urlencode($paremeterKey).'='.urlencode($value);
-        });
+            return;
+        }
+
+        $resultQuery[] = urlencode($paremeterKey).'='.urlencode($value);
     };
 
     array_walk($query, $iterator, null);
 
-    return implode('&', $resultQuery);
+    return '?'.implode('&', $resultQuery);
 }
