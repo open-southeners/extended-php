@@ -13,6 +13,10 @@ function parse_http_query(string $query = null): array
 {
     $query ??= $_SERVER['QUERY_STRING'] ?? '';
 
+    if (empty($query)) {
+        return [];
+    }
+
     if (substr($query, 0, 1) === '?') {
         $query = substr($query, 1, strlen($query));
     }
@@ -55,6 +59,10 @@ function parse_http_query(string $query = null): array
  */
 function build_http_query(array $query): string
 {
+    if (empty($query)) {
+        return '';
+    }
+
     $resultQuery = [];
 
     $iterator = function ($value, $key, $aggregator) use (&$resultQuery, &$iterator) {
