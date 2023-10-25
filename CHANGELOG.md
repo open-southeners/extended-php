@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.2] - 2023-10-25
+
+### Fixed
+
+- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` handle empty input with empty return
+- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` handle empty input with empty return
+
 ## [0.13.1] - 2023-10-24
 
 ### Fixed
