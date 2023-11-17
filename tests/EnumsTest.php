@@ -73,12 +73,19 @@ class EnumsTest extends TestCase
         enum_to_array(Post::class);
     }
 
-    public function test_described_enum_to_array(): void
+    public function test_described_enum_using_as_select_array(): void
     {
         $myBackedEnumArr = MyBackedEnum::asSelectArray();
 
         $this->assertIsArray($myBackedEnumArr);
         $this->assertEmpty(array_diff($myBackedEnumArr, ['first' => 'First point', 'second' => 'Second point', 'third' => 'Third point']));
+    }
+
+    public function test_described_enum_case_get_description()
+    {
+        $this->assertEquals('First point', MyBackedEnum::First->getDescription());
+        $this->assertEquals('Second point', MyBackedEnum::Second->getDescription());
+        $this->assertEquals('Third point', MyBackedEnum::Third->getDescription());
     }
 
     public function test_enum_values(): void
