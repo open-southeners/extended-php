@@ -36,6 +36,7 @@
             "src/Classes/functions.php",
             "src/Enums/functions.php",
             "src/Models/functions.php",
+            "src/Numbers/functions.php",
             "src/Strings/functions.php",
             "src/Utils/functions.php"
         ]
