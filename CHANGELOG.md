@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] - 2024-01-22
+
+### Added
+
+- Function `short_number` to convert big numbers to suffixed strings like (`1000` to `1K`, `1000000` to `1M`)
+
 ## [0.14.0] - 2023-11-17
 
 ### Changed
