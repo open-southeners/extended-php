@@ -7,7 +7,7 @@ function short_number(int|float $value): string
     $count = 0;
     $iteratorValue = (string) ($roundedValue = (int) round($value, 0));
 
-    while (strlen($iteratorValue) > 3) {
+    while (strlen($iteratorValue) > 3 && $count < 6) {
         $count += 3;
         $iteratorValue = substr($iteratorValue, 0, -3);
     }
