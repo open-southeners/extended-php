@@ -12,13 +12,13 @@ Check if object or class is a PHP enum.
 enum MyEnum
 {
     case First;
-    
+
     case Second;
-    
+
     case Third;
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\is_enum(MyEnum::class); // true
+\OpenSoutheners\ExtendedPhp\Enums\is_enum(MyEnum::class); // true
 ```
 
 ## enum\_is\_backed
@@ -29,13 +29,13 @@ Check if object or class is a backed PHP enum.
 enum MyEnum
 {
     case First;
-    
+
     case Second;
-    
+
     case Third;
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\enum_is_backed(MyEnum::class); // false
+\OpenSoutheners\ExtendedPhp\Enums\enum_is_backed(MyEnum::class); // false
 ```
 
 ## has\_case
@@ -46,13 +46,13 @@ Check if object or class is a PHP enum that has the specified case.
 enum MyEnum
 {
     case First;
-    
+
     case Second;
-    
+
     case Third;
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\has_case(MyEnum::class, 'First'); // true
+\OpenSoutheners\ExtendedPhp\Enums\has_case(MyEnum::class, 'First'); // true
 ```
 
 ## get\_enum\_class
@@ -63,13 +63,13 @@ Get class string from enum object.
 enum MyEnum
 {
     case First;
-    
+
     case Second;
-    
+
     case Third;
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\get_enum_class(MyEnum::First); // 'MyEnum'
+\OpenSoutheners\ExtendedPhp\Enums\get_enum_class(MyEnum::First); // 'MyEnum'
 ```
 
 ## enum\_to\_array
@@ -80,13 +80,13 @@ Converts PHP enum object or class into an array. In case of a backed enum it wil
 enum MyEnum
 {
     case First;
-    
+
     case Second;
-    
+
     case Third;
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\enum_to_array(MyEnum::class);
+\OpenSoutheners\ExtendedPhp\Enums\enum_to_array(MyEnum::class);
 // ['First', 'Second', 'Third']
 ```
 
@@ -98,13 +98,13 @@ Gets array of values from PHP backed enum.
 enum MyBackedEnum: string
 {
     case First = 'one';
-    
+
     case Second = 'two';
-    
+
     case Third = 'three';
 }
 
-\OpenSoutheners\LaravelHelpers\Enums\enum_values(MyBackedEnum::class);
+\OpenSoutheners\ExtendedPhp\Enums\enum_values(MyBackedEnum::class);
 // ['one', 'two', 'three']
 ```
 
@@ -121,8 +121,8 @@ This trait will add some functions to the PHP enums so they can be converted to 
 This is a PHP attribute to be used in those enum cases to be used along with `GetsAttribute` trait:
 
 ```php
-use OpenSoutheners\LaravelHelpers\Enums\Description;
-use OpenSoutheners\LaravelHelpers\Enums\GetsAttributes;
+use OpenSoutheners\ExtendedPhp\Enums\Description;
+use OpenSoutheners\ExtendedPhp\Enums\GetsAttributes;
 
 enum MyBackedEnum: string
 {

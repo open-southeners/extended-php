@@ -15,7 +15,7 @@ Check if a variable is a valid json string.
 ```php
 $json = '{}';
 
-\OpenSoutheners\LaravelHelpers\Strings\is_json($json); // true
+\OpenSoutheners\ExtendedPhp\Strings\is_json($json); // true
 ```
 
 ## is\_json\_structure
@@ -25,7 +25,7 @@ Similarly than `is_json` function but this one also checks if the data inside th
 ```php
 $json = '1';
 
-\OpenSoutheners\LaravelHelpers\Strings\is_json_structure($json); // false
+\OpenSoutheners\ExtendedPhp\Strings\is_json_structure($json); // false
 ```
 
 ## get\_email\_domain
@@ -35,5 +35,5 @@ Get domain part from email address:
 ```php
 $email = 'hello@mydomain.com';
 
-\OpenSoutheners\LaravelHelpers\Strings\get_email_domain($email); // 'mydomain.com'
+\OpenSoutheners\ExtendedPhp\Strings\get_email_domain($email); // 'mydomain.com'
 ```

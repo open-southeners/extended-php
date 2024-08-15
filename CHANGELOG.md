@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-08-15
+
+### Changed
+
+- Name of the package from `open-southeners/laravel-helpers` to `open-southeners/extended-php` as Laravel Helpers are now located as `open-southeners/extended-laravel` ([repository here](https://github.com/open-southeners/extended-laravel)
+- As package name changed we reflected the change to all namespaces, **search `OpenSoutheners/LaravelHelpers` and replace by `OpenSoutheners/ExtendedPhp`**
+
+### Removed
+
+- **All functions from models (moved to the extended-laravel package so replace this one with the Laravel one)**. To get this right you should **search `OpenSoutheners/LaravelHelpers/Models` and replace by `OpenSoutheners/ExtendedLaravel/Models`**
+
 ## [0.15.1] - 2024-01-22
 
 ### Fixed
@@ -29,39 +40,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` handle empty input with empty return
-- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` handle empty input with empty return
+- `OpenSoutheners\ExtendedPhp\Utils\parse_http_query` handle empty input with empty return
+- `OpenSoutheners\ExtendedPhp\Utils\build_http_query` handle empty input with empty return
 
 ## [0.13.1] - 2023-10-24
 
 ### Fixed
 
-- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` with nested modifiers under parameter keys & simple values (strings)
-- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` with nested modifiers under parameter keys & simple values (strings)
+- `OpenSoutheners\ExtendedPhp\Utils\parse_http_query` with nested modifiers under parameter keys & simple values (strings)
+- `OpenSoutheners\ExtendedPhp\Utils\build_http_query` with nested modifiers under parameter keys & simple values (strings)
 
 ## [0.13.0] - 2023-10-23
 
 ### Added
 
-- `OpenSoutheners\LaravelHelpers\Utils\parse_http_query` function for HTTP query parameters parse to multidimensional arrays
-- `OpenSoutheners\LaravelHelpers\Utils\build_http_query` function for HTTP query parameters build from arrays
+- `OpenSoutheners\ExtendedPhp\Utils\parse_http_query` function for HTTP query parameters parse to multidimensional arrays
+- `OpenSoutheners\ExtendedPhp\Utils\build_http_query` function for HTTP query parameters build from arrays
 
 ## [0.12.0] - 2023-10-23
 
 ### Added
 
-- `OpenSoutheners\LaravelHelpers\Strings\is_json_structure` function that covers what `is_json` does not, will also check if the json is a structure and not cases like `0`, `"0"`, `"hello world"`... which are valid in `is_json`
-- `OpenSoutheners\LaravelHelpers\Strings\is_json` fallback to PHP 8.3 `json_validate` native function with deprecation warning
+- `OpenSoutheners\ExtendedPhp\Strings\is_json_structure` function that covers what `is_json` does not, will also check if the json is a structure and not cases like `0`, `"0"`, `"hello world"`... which are valid in `is_json`
+- `OpenSoutheners\ExtendedPhp\Strings\is_json` fallback to PHP 8.3 `json_validate` native function with deprecation warning
 
 ### Changed
 
-- `OpenSoutheners\LaravelHelpers\Strings\is_json` now accepts any type as input value following PHP's functions
+- `OpenSoutheners\ExtendedPhp\Strings\is_json` now accepts any type as input value following PHP's functions
 
 ## [0.11.0] - 2023-06-10
 
 ### Added
 
-- `OpenSoutheners\LaravelHelpers\Enums\GetsAttributes` trait and `OpenSoutheners\LaravelHelpers\Enums\Description` attribute so enums cases can be described and used in arrays.
+- `OpenSoutheners\ExtendedPhp\Enums\GetsAttributes` trait and `OpenSoutheners\ExtendedPhp\Enums\Description` attribute so enums cases can be described and used in arrays.
 
 ## [0.10.0] - 2023-02-17
 
@@ -90,7 +101,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Enum functions now are namespaced as `OpenSoutheners\LaravelHelpers\Enums` instead of `OpenSoutheners\LaravelHelpers`
+- Enum functions now are namespaced as `OpenSoutheners\ExtendedPhp\Enums` instead of `OpenSoutheners\ExtendedPhp`
 - `has_case` enum function now throws exception when value is not an enum
 
 ### Added

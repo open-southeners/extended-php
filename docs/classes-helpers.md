@@ -11,7 +11,7 @@ Gets the namespace from class or object.
 ```php
 $class = App\Http\Controllers\MyController::class;
 
-\OpenSoutheners\LaravelHelpers\Classes\class_namespace($class);
+\OpenSoutheners\ExtendedPhp\Classes\class_namespace($class);
 // 'App\Http\Controllers'
 ```
 
@@ -22,7 +22,7 @@ Similarly than PHP's [`class_implements`](https://www.php.net/manual/en/function
 ```php
 class MyClass implements MyInterface {}
 
-\OpenSoutheners\LaravelHelpers\Classes\class_implement(MyClass::class, MyInterface::class);
+\OpenSoutheners\ExtendedPhp\Classes\class_implement(MyClass::class, MyInterface::class);
 // true
 ```
 
@@ -33,7 +33,7 @@ Similarly than PHP's [`class_uses`](https://www.php.net/manual/en/function.class
 ```php
 class MyClass implements MyInterface {}
 
-\OpenSoutheners\LaravelHelpers\Classes\class_use(MyClass::class, MyTrait::class);
+\OpenSoutheners\ExtendedPhp\Classes\class_use(MyClass::class, MyTrait::class);
 // false
 ```
 
@@ -52,17 +52,17 @@ class MyClass implements MyInterface
     {
         return "greetings {$name}!";
     }
-    
+
     public function myMethod(string $name)
     {
         return "hello {$name}!";
     }
 }
 
-\OpenSoutheners\LaravelHelpers\Classes\call(MyClass::class, 'myStaticMethod', ['user'], true);
+\OpenSoutheners\ExtendedPhp\Classes\call(MyClass::class, 'myStaticMethod', ['user'], true);
 // 'greetings user!'
 
-\OpenSoutheners\LaravelHelpers\Classes\call(MyClass::class, 'myMethod', ['world']);
+\OpenSoutheners\ExtendedPhp\Classes\call(MyClass::class, 'myMethod', ['world']);
 // 'hello world!'
 ```
 
@@ -79,7 +79,7 @@ class MyClass implements MyInterface
     }
 }
 
-\OpenSoutheners\LaravelHelpers\Classes\call_static(MyClass::class, 'myStaticMethod', ['user']);
+\OpenSoutheners\ExtendedPhp\Classes\call_static(MyClass::class, 'myStaticMethod', ['user']);
 // 'greetings user!'
 ```
 
@@ -91,9 +91,9 @@ Gets class string from object or class. Similarly to PHP's [`get_class`](https:/
 $class = App\Http\Controllers\MyController::class;
 $classInstance = new $class;
 
-\OpenSoutheners\LaravelHelpers\Classes\class_from($class);
+\OpenSoutheners\ExtendedPhp\Classes\class_from($class);
 // 'App\Http\Controllers\MyController'
 
-\OpenSoutheners\LaravelHelpers\Classes\class_from($classInstance);
+\OpenSoutheners\ExtendedPhp\Classes\class_from($classInstance);
 // 'App\Http\Controllers\MyController'
 ```
