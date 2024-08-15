@@ -36,7 +36,7 @@ function parse_http_query(string $query = null): array
 
         if ($aggregator) {
             $processedQueryParameters[$aggregator] = array_merge_recursive($processedQueryParameters[$aggregator] ?? [], [$key => $value]);
-            
+
             return;
         }
 
@@ -74,12 +74,9 @@ function build_http_query(array $query): string
 
         if (
             is_array($value)
-            && (is_string(array_key_first($value))
-                || (! is_string(array_key_first($value))
-                    && is_array($value[0])
-                    && is_string(array_key_first($value[0]))
-                )
-            )
+            && ! is_string(array_key_first($value))
+            && is_array($value[0])
+            && is_string(array_key_first($value[0]))
         ) {
             array_walk($value, $iterator, $paremeterKey);
 
