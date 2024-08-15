@@ -6,7 +6,7 @@ Laravel extended helpers for PHP and framework features
 ## Getting started
 
 ```sh
-composer require open-southeners/lextended-php
+composer require open-southeners/extended-php
 ```
 
 ## Support
