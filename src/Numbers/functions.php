@@ -13,10 +13,10 @@ function short_number(int|float $value): string
     }
 
     $suffix = match (true) {
-        $count >= 3 && $count < 6 => "K",
-        $count >= 6 => "M",
-        default => ""
+        $count >= 3 && $count < 6 => 'K',
+        $count >= 6 => 'M',
+        default => ''
     };
 
-    return $iteratorValue . $suffix;
+    return $iteratorValue.$suffix;
 }

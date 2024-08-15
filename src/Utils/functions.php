@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
  *
  * This method does require the package "symfony/http-foundation".
  */
-function parse_http_query(string $query = null): array
+function parse_http_query(?string $query = null): array
 {
     $query ??= $_SERVER['QUERY_STRING'] ?? '';
 

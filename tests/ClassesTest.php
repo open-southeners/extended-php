@@ -4,17 +4,18 @@ namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use Exception;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyClass;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyInterface;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyOtherClass;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyTrait;
+use PHPUnit\Framework\TestCase;
+use ReflectionException;
+
 use function OpenSoutheners\ExtendedPhp\Classes\call;
 use function OpenSoutheners\ExtendedPhp\Classes\call_static;
 use function OpenSoutheners\ExtendedPhp\Classes\class_implement;
 use function OpenSoutheners\ExtendedPhp\Classes\class_namespace;
 use function OpenSoutheners\ExtendedPhp\Classes\class_use;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyClass;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyTrait;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyInterface;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyOtherClass;
-use PHPUnit\Framework\TestCase;
-use ReflectionException;
 
 class ClassesTest extends TestCase
 {
@@ -27,22 +28,22 @@ class ClassesTest extends TestCase
 
     public function test_class_implement(): void
     {
-        $this->assertTrue(class_implement(new MyClass(), MyInterface::class));
+        $this->assertTrue(class_implement(new MyClass, MyInterface::class));
         $this->assertTrue(class_implement(MyClass::class, MyInterface::class));
-        $this->assertFalse(class_implement(new MyClass(), Exception::class));
+        $this->assertFalse(class_implement(new MyClass, Exception::class));
         $this->assertFalse(class_implement(MyClass::class, MyTrait::class));
         $this->assertFalse(class_implement(MyClass::class, 'This/Does/Not/Exists'));
     }
 
     public function test_class_use(): void
     {
-        $this->assertTrue(class_use(new MyClass(), MyTrait::class, true));
+        $this->assertTrue(class_use(new MyClass, MyTrait::class, true));
         $this->assertTrue(class_use(MyOtherClass::class, MyTrait::class, true));
         $this->assertFalse(class_use(MyOtherClass::class, MyTrait::class));
         $this->assertFalse(class_use(MyClass::class, Exception::class));
-        $this->assertFalse(class_use(new MyClass(), Exception::class, true));
+        $this->assertFalse(class_use(new MyClass, Exception::class, true));
         $this->assertFalse(class_use(MyClass::class, HasAttributes::class));
-        $this->assertFalse(class_use(new MyClass(), HasAttributes::class));
+        $this->assertFalse(class_use(new MyClass, HasAttributes::class));
         $this->assertFalse(class_use(MyClass::class, 'This/Does/Not/Exists'));
     }
 
@@ -54,13 +55,13 @@ class ClassesTest extends TestCase
         ];
 
         $this->assertTrue(call(MyClass::class, 'method'));
-        $this->assertTrue(call(new MyClass(), 'method'));
+        $this->assertTrue(call(new MyClass, 'method'));
         $this->assertEquals(call(MyClass::class, 'methodWithArgs', $args), $args);
-        $this->assertEquals(call(new MyClass(), 'methodWithArgs', $args), $args);
+        $this->assertEquals(call(new MyClass, 'methodWithArgs', $args), $args);
         $this->assertTrue(call_static(MyClass::class, 'staticMethod'));
-        $this->assertTrue(call_static(new MyClass(), 'staticMethod'));
+        $this->assertTrue(call_static(new MyClass, 'staticMethod'));
         $this->assertEquals(call_static(MyClass::class, 'staticMethodWithArgs', $args), $args);
-        $this->assertEquals(call_static(new MyClass(), 'staticMethodWithArgs', $args), $args);
+        $this->assertEquals(call_static(new MyClass, 'staticMethodWithArgs', $args), $args);
     }
 
     public function test_call_static_method_as_non_static_throws_exception()

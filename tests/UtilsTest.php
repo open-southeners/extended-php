@@ -2,9 +2,10 @@
 
 namespace OpenSoutheners\ExtendedPhp\Tests;
 
+use PHPUnit\Framework\TestCase;
+
 use function OpenSoutheners\ExtendedPhp\Utils\build_http_query;
 use function OpenSoutheners\ExtendedPhp\Utils\parse_http_query;
-use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
 {

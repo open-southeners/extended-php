@@ -15,8 +15,8 @@ function is_json(mixed $value): bool
 
     if (
         ! is_string($value)
-        || (null === \json_decode($value, false, 512, JSON_UNESCAPED_UNICODE)
-            && JSON_ERROR_NONE !== \json_last_error())
+        || (\json_decode($value, false, 512, JSON_UNESCAPED_UNICODE) === null
+            && \json_last_error() !== JSON_ERROR_NONE)
     ) {
         return false;
     }

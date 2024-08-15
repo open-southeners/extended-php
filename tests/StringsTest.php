@@ -4,11 +4,12 @@ namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
+use PHPUnit\Framework\TestCase;
+use Throwable;
+
 use function OpenSoutheners\ExtendedPhp\Strings\get_email_domain;
 use function OpenSoutheners\ExtendedPhp\Strings\is_json;
 use function OpenSoutheners\ExtendedPhp\Strings\is_json_structure;
-use PHPUnit\Framework\TestCase;
-use Throwable;
 
 class StringsTest extends TestCase
 {
@@ -26,7 +27,7 @@ class StringsTest extends TestCase
             $this->assertTrue(is_json('"hello"'));
             $this->assertFalse(is_json("{\u0022foo\u0022: \u0022bar\u0022}"));
             $this->assertFalse(is_json([]));
-            $this->assertFalse(is_json(new \stdClass()));
+            $this->assertFalse(is_json(new \stdClass));
             $this->assertFalse(is_json(1));
         };
 
@@ -57,7 +58,7 @@ class StringsTest extends TestCase
         $this->assertFalse(is_json_structure('"hello"'));
         $this->assertFalse(is_json_structure("{\u0022foo\u0022: \u0022bar\u0022}"));
         $this->assertFalse(is_json_structure([]));
-        $this->assertFalse(is_json_structure(new \stdClass()));
+        $this->assertFalse(is_json_structure(new \stdClass));
         $this->assertFalse(is_json_structure(1));
     }
 

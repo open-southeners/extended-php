@@ -75,7 +75,7 @@ function call($class, string $method, array $args = [], bool $static = false)
         return $classMethod->invoke($class, ...array_values($args));
     }
 
-    return $classMethod->invoke($static ? null : new $class(), ...array_values($args));
+    return $classMethod->invoke($static ? null : new $class, ...array_values($args));
 }
 
 /**

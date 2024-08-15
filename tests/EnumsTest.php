@@ -3,17 +3,18 @@
 namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use Exception;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyBackedEnum;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyEnum;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyTrait;
+use PHPUnit\Framework\TestCase;
+use stdClass;
+
 use function OpenSoutheners\ExtendedPhp\Enums\enum_is_backed;
 use function OpenSoutheners\ExtendedPhp\Enums\enum_to_array;
 use function OpenSoutheners\ExtendedPhp\Enums\enum_values;
 use function OpenSoutheners\ExtendedPhp\Enums\get_enum_class;
 use function OpenSoutheners\ExtendedPhp\Enums\has_case;
 use function OpenSoutheners\ExtendedPhp\Enums\is_enum;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyBackedEnum;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyTrait;
-use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyEnum;
-use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
  * @group needsPhp81
@@ -24,7 +25,7 @@ class EnumsTest extends TestCase
     {
         $this->assertTrue(is_enum(MyEnum::class));
         $this->assertFalse(is_enum(MyTrait::class));
-        $this->assertFalse(is_enum(new stdClass()));
+        $this->assertFalse(is_enum(new stdClass));
         $this->assertFalse(is_enum(''));
     }
 
