@@ -1,9 +1,9 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests\Fixtures;
+namespace OpenSoutheners\ExtendedPhp\Tests\Fixtures;
 
-use OpenSoutheners\LaravelHelpers\Enums\Description;
-use OpenSoutheners\LaravelHelpers\Enums\GetsAttributes;
+use OpenSoutheners\ExtendedPhp\Enums\Description;
+use OpenSoutheners\ExtendedPhp\Enums\GetsAttributes;
 
 enum MyBackedEnum: string
 {

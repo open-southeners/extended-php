@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Enums;
+namespace OpenSoutheners\ExtendedPhp\Enums;
 
 use BackedEnum;
 use Exception;

@@ -1,55 +1,53 @@
 {
-    "name": "open-southeners/laravel-helpers",
-    "description": "Laravel extended helpers for PHP and framework features",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Rubén Robles",
-            "email": "me@d8vjork.com"
-        }
-    ],
-    "homepage": "http://docs.opensoutheners.com/laravel-helpers/",
-    "support": {
-        "issues": "https://github.com/open-southeners/laravel-helpers/issues",
-        "source": "https://github.com/open-southeners/laravel-helpers"
-    },
-    "require": {
-        "php": "^8.0"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.5",
-        "mockery/mockery": "^1.5",
-        "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench": "^7.0 || ^8.0",
-        "phpstan/phpstan": "^1.2",
-        "phpunit/phpunit": "^9.0 || ^10.0",
-        "symfony/http-foundation": "^6.0"
-    },
-    "suggest": {
-        "symfony/http-foundation": "Required if some HTTP based utils functions are used."
-    },
-    "autoload": {
-        "psr-4": {
-            "OpenSoutheners\\LaravelHelpers\\": "src"
-        },
-        "files": [
-            "src/Classes/functions.php",
-            "src/Enums/functions.php",
-            "src/Models/functions.php",
-            "src/Numbers/functions.php",
-            "src/Strings/functions.php",
-            "src/Utils/functions.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "OpenSoutheners\\LaravelHelpers\\Tests\\": "tests"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true
-        },
-        "sort-packages": true
+  "name": "open-southeners/extended-php",
+  "description": "Extended PHP methods to make development easier",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rubén Robles",
+      "email": "me@d8vjork.com"
     }
+  ],
+  "homepage": "http://docs.opensoutheners.com/extended-php/",
+  "support": {
+    "issues": "https://github.com/open-southeners/extended-php/issues",
+    "source": "https://github.com/open-southeners/extended-php"
+  },
+  "require": {
+    "php": "^8.0"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.5",
+    "mockery/mockery": "^1.5",
+    "orchestra/testbench": "^7.0 || ^8.0",
+    "phpstan/phpstan": "^1.2",
+    "phpunit/phpunit": "^9.0 || ^10.0",
+    "symfony/http-foundation": "^6.0"
+  },
+  "suggest": {
+    "symfony/http-foundation": "Required if some HTTP based utils functions are used."
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenSoutheners\\ExtendedPhp\\": "src"
+    },
+    "files": [
+      "src/Classes/functions.php",
+      "src/Enums/functions.php",
+      "src/Numbers/functions.php",
+      "src/Strings/functions.php",
+      "src/Utils/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OpenSoutheners\\ExtendedPhp\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true
+    },
+    "sort-packages": true
+  }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Utils;
+namespace OpenSoutheners\ExtendedPhp\Utils;
 
 use Symfony\Component\HttpFoundation\HeaderUtils;
 

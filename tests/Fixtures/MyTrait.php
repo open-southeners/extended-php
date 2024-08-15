@@ -2,11 +2,7 @@
 
 namespace OpenSoutheners\ExtendedPhp\Tests\Fixtures;
 
-enum MyEnum
+trait MyTrait
 {
-    case First;
-
-    case Second;
-
-    case Third;
+    //
 }

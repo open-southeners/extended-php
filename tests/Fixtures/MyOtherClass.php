@@ -1,8 +1,8 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests\Fixtures;
+namespace OpenSoutheners\ExtendedPhp\Tests\Fixtures;
 
-class MyOtherClass
+class MyOtherClass extends MyClass
 {
     /**
      * @var mixed

@@ -1,9 +1,11 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests\Fixtures;
+namespace OpenSoutheners\ExtendedPhp\Tests\Fixtures;
 
-class MyClass
+class MyClass implements MyInterface
 {
+    use MyTrait;
+
     public function getAnotherClass($foo)
     {
         return new MyOtherClass($foo);

@@ -1,12 +1,12 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests;
+namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDeprecationHandling;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithExceptionHandling;
-use function OpenSoutheners\LaravelHelpers\Strings\get_email_domain;
-use function OpenSoutheners\LaravelHelpers\Strings\is_json;
-use function OpenSoutheners\LaravelHelpers\Strings\is_json_structure;
+use function OpenSoutheners\ExtendedPhp\Strings\get_email_domain;
+use function OpenSoutheners\ExtendedPhp\Strings\is_json;
+use function OpenSoutheners\ExtendedPhp\Strings\is_json_structure;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 

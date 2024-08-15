@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Strings;
+namespace OpenSoutheners\ExtendedPhp\Strings;
 
 /**
  * Finds whether a variable is a valid JSON string.

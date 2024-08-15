@@ -1,19 +1,17 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests;
+namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use Exception;
-use Illuminate\Database\Eloquent\Concerns\HasAttributes;
-use Illuminate\Database\Eloquent\Model;
-use function OpenSoutheners\LaravelHelpers\Enums\enum_is_backed;
-use function OpenSoutheners\LaravelHelpers\Enums\enum_to_array;
-use function OpenSoutheners\LaravelHelpers\Enums\enum_values;
-use function OpenSoutheners\LaravelHelpers\Enums\get_enum_class;
-use function OpenSoutheners\LaravelHelpers\Enums\has_case;
-use function OpenSoutheners\LaravelHelpers\Enums\is_enum;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\Models\Post;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyBackedEnum;
-use OpenSoutheners\LaravelHelpers\Tests\Fixtures\MyEnum;
+use function OpenSoutheners\ExtendedPhp\Enums\enum_is_backed;
+use function OpenSoutheners\ExtendedPhp\Enums\enum_to_array;
+use function OpenSoutheners\ExtendedPhp\Enums\enum_values;
+use function OpenSoutheners\ExtendedPhp\Enums\get_enum_class;
+use function OpenSoutheners\ExtendedPhp\Enums\has_case;
+use function OpenSoutheners\ExtendedPhp\Enums\is_enum;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyBackedEnum;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyTrait;
+use OpenSoutheners\ExtendedPhp\Tests\Fixtures\MyEnum;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -25,9 +23,7 @@ class EnumsTest extends TestCase
     public function test_is_enum(): void
     {
         $this->assertTrue(is_enum(MyEnum::class));
-        $this->assertFalse(is_enum(Post::class));
-        $this->assertFalse(is_enum(Model::class));
-        $this->assertFalse(is_enum(HasAttributes::class));
+        $this->assertFalse(is_enum(MyTrait::class));
         $this->assertFalse(is_enum(new stdClass()));
         $this->assertFalse(is_enum(''));
     }
@@ -38,7 +34,7 @@ class EnumsTest extends TestCase
         $this->assertTrue(enum_is_backed(MyBackedEnum::class));
 
         $this->expectException(Exception::class);
-        enum_is_backed(Post::class);
+        enum_is_backed(MyTrait::class);
     }
 
     public function test_has_case(): void
@@ -47,7 +43,7 @@ class EnumsTest extends TestCase
         $this->assertFalse(has_case(MyEnum::class, 'Something'));
 
         $this->expectException(Exception::class);
-        $this->assertFalse(has_case(Post::class, 'First'));
+        $this->assertFalse(has_case(MyTrait::class, 'First'));
     }
 
     public function test_get_enum_class(): void
@@ -56,7 +52,7 @@ class EnumsTest extends TestCase
         $this->assertEquals(get_enum_class(MyBackedEnum::tryFrom('first')), MyBackedEnum::class);
 
         $this->expectException(Exception::class);
-        get_enum_class(Post::class);
+        get_enum_class(MyTrait::class);
     }
 
     public function test_enum_to_array(): void
@@ -70,7 +66,7 @@ class EnumsTest extends TestCase
         $this->assertEmpty(array_diff($myBackedEnumArr, ['First' => 'first', 'Second' => 'second', 'Third' => 'third']));
 
         $this->expectException(Exception::class);
-        enum_to_array(Post::class);
+        enum_to_array(MyTrait::class);
     }
 
     public function test_described_enum_using_as_select_array(): void

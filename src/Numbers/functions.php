@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Numbers;
+namespace OpenSoutheners\ExtendedPhp\Numbers;
 
 function short_number(int|float $value): string
 {

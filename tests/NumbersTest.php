@@ -1,10 +1,10 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests;
+namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function OpenSoutheners\LaravelHelpers\Numbers\short_number;
+use function OpenSoutheners\ExtendedPhp\Numbers\short_number;
 
 class NumbersTest extends TestCase
 {

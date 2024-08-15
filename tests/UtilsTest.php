@@ -1,9 +1,9 @@
 <?php
 
-namespace OpenSoutheners\LaravelHelpers\Tests;
+namespace OpenSoutheners\ExtendedPhp\Tests;
 
-use function OpenSoutheners\LaravelHelpers\Utils\build_http_query;
-use function OpenSoutheners\LaravelHelpers\Utils\parse_http_query;
+use function OpenSoutheners\ExtendedPhp\Utils\build_http_query;
+use function OpenSoutheners\ExtendedPhp\Utils\parse_http_query;
 use PHPUnit\Framework\TestCase;
 
 class UtilsTest extends TestCase
@@ -11,12 +11,12 @@ class UtilsTest extends TestCase
     public function test_parse_http_query()
     {
         $parsedQuery = parse_http_query('?filter%5Blabels.id%5D%5Blike%5D%5Band%5D=1%2C2&filter%5Blabels.id%5D%5Blike%5D=13&filter%5Blabels.id%5D=4&sort=-created_at%2Cauthor.name');
-        
+
         $this->assertIsArray($parsedQuery);
         $this->assertEquals(['filter' => ['labels.id' => ['4', 'like' => ['and' => '1,2', '13']]], 'sort' => '-created_at,author.name'], $parsedQuery);
-        
+
         $parsedQuery = parse_http_query('');
-        
+
         $this->assertIsArray($parsedQuery);
         $this->assertEmpty($parsedQuery);
     }
