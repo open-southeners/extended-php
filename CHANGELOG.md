@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-12-05
+
+### Fixed
+
+- Deprecation notices with PHP 8.4 around nullable parameters
+
 ## [1.0.0] - 2024-08-15
 
 ### Changed
