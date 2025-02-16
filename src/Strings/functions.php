@@ -47,5 +47,7 @@ function get_email_domain(string $email): string
         return '';
     }
 
-    return last(explode('@', $email));
+    $emailParts = explode('@', $email);
+    
+    return $emailParts[count($emailParts)-1];
 }
