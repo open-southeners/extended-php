@@ -26,11 +26,41 @@ function class_implement(object|string $class, string $interface): bool
 }
 
 /**
+ * Get traits used in class instance or string.
+ *
+ * @return array<string>
+ */
+function class_traits(object|string $class, bool $recursive = false): array
+{
+    $reflector = new ReflectionClass($class);
+    
+    $traits = [];
+    
+    $traitReflections = $reflector->getTraits();
+    
+    if ($recursive && $reflector->getParentClass()) {
+        $traitReflections = array_merge($traitReflections, $reflector->getParentClass()->getTraits());
+    }
+    
+    foreach ($traitReflections as $traitReflector) {
+        $traitClassName = $traitReflector->getName();
+        
+        $traits[] = $traitClassName;
+        
+        if ($recursive) {
+            $traits = array_merge($traits, class_traits($traitClassName, $recursive));
+        }
+    }
+
+    return array_unique($traits);
+}
+
+/**
  * Check if class instance or string uses an specific trait.
  */
 function class_use(object|string $class, string $trait, bool $recursive = false): bool
 {
-    return in_array($trait, $recursive ? class_uses_recursive($class) : class_uses($class));
+    return in_array($trait, class_traits($class, $recursive));
 }
 
 /**
