@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-02-16
+
+### Added
+
+- `Classes\class_traits` function to get traits used in class or object recursively or not.
+
+### Changed
+
+- `Strings\is_json` function now doesn't throw a deprecation notice on PHP 8.3+
+
+### Removed
+
+- Laravel dependency (changing internally functions like `Strings\get_email_domain` and `Classes\class_use`)
+
 ## [1.0.1] - 2024-12-05
 
 ### Fixed
