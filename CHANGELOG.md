@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-10-28
+
+### Added
+
+- `Arrays\array_to_csv` function to convert an array to a CSV string.
+- `Arrays\array_csv` function to convert a CSV string to an array.
+- `Arrays\array_csv_assoc` function to convert a CSV string to an associative array.
+
 ## [1.1.0] - 2025-02-16
 
 ### Added
