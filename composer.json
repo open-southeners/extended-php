@@ -30,6 +30,7 @@
             "OpenSoutheners\\ExtendedPhp\\": "src"
         },
         "files": [
+            "src/Arrays/functions.php",
             "src/Classes/functions.php",
             "src/Enums/functions.php",
             "src/Numbers/functions.php",

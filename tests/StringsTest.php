@@ -3,8 +3,6 @@
 namespace OpenSoutheners\ExtendedPhp\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\TestStatus\Deprecation;
-use Throwable;
 
 use function OpenSoutheners\ExtendedPhp\Strings\get_email_domain;
 use function OpenSoutheners\ExtendedPhp\Strings\is_json;
